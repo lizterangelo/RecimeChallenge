@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6EF1F5762F1A564100CD42E8 /* AdvancedList in Frameworks */ = {isa = PBXBuildFile; productRef = 6EF1F5752F1A564100CD42E8 /* AdvancedList */; };
+		6EF1F5772F1A564200CD42E8 /* SSSwiftUISideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = 6EF1F5782F1A564200CD42E8 /* SSSwiftUISideMenu */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6EF1F5762F1A564100CD42E8 /* AdvancedList in Frameworks */,
+				6EF1F5772F1A564200CD42E8 /* SSSwiftUISideMenu in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,6 +120,7 @@
 			name = RecimeChallenge;
 			packageProductDependencies = (
 				6EF1F5752F1A564100CD42E8 /* AdvancedList */,
+				6EF1F5782F1A564200CD42E8 /* SSSwiftUISideMenu */,
 			);
 			productName = RecimeChallenge;
 			productReference = 6EF1F16B2F1A108F00CD42E8 /* ReciMe Challenge.app */;
@@ -203,6 +206,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				6EF1F5742F1A564100CD42E8 /* XCRemoteSwiftPackageReference "AdvancedList" */,
+				6EF1F5792F1A564200CD42E8 /* XCRemoteSwiftPackageReference "SSSwiftUISideMenu" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 6EF1F16C2F1A108F00CD42E8 /* Products */;
@@ -605,6 +609,14 @@
 				minimumVersion = 8.0.0;
 			};
 		};
+		6EF1F5792F1A564200CD42E8 /* XCRemoteSwiftPackageReference "SSSwiftUISideMenu" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SimformSolutionsPvtLtd/SSSwiftUISideMenu";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -612,6 +624,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6EF1F5742F1A564100CD42E8 /* XCRemoteSwiftPackageReference "AdvancedList" */;
 			productName = AdvancedList;
+		};
+		6EF1F5782F1A564200CD42E8 /* SSSwiftUISideMenu */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6EF1F5792F1A564200CD42E8 /* XCRemoteSwiftPackageReference "SSSwiftUISideMenu" */;
+			productName = SSSwiftUISideMenu;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

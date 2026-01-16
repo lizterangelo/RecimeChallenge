@@ -1,21 +1,14 @@
 import SwiftUI
-import SSSwiftUISideMenu
 
 struct MainTabView: View {
     @State private var selectedTab = 0
     @State private var previousTab = 0
     @State private var showSideMenu = false
-    @State private var selectedMenuIndex = 0
 
     private let menuItems = [
-        MenuItem(title: "Profile", icon: "person.circle"),
-        MenuItem(title: "Preferences", icon: "gearshape"),
-        MenuItem(title: "Notifications", icon: "bell"),
-        MenuItem(title: "Appearance", icon: "paintbrush"),
-        MenuItem(title: "About", icon: "info.circle"),
-        MenuItem(title: "Help & Support", icon: "questionmark.circle"),
-        MenuItem(title: "Privacy Policy", icon: "hand.raised"),
-        MenuItem(title: "Terms of Service", icon: "doc.text")
+        SideMenuItem(title: "Profile", icon: "person.circle"),
+        SideMenuItem(title: "Settings", icon: "gearshape"),
+        SideMenuItem(title: "About", icon: "info.circle")
     ]
 
     var body: some View {
@@ -51,15 +44,9 @@ struct MainTabView: View {
                 }
             }
 
-            SSSwiftUISideMenu(
-                openSideMenu: $showSideMenu,
-                selectedIndex: $selectedMenuIndex,
-                menuItems: menuItems,
-                menuConfig: SSMenuConfig(
-                    menuDirection: .right,
-                    backgroundColor: .systemBackground,
-                    titleColor: .primary
-                )
+            SideMenuView(
+                isOpen: $showSideMenu,
+                menuItems: menuItems
             )
         }
     }

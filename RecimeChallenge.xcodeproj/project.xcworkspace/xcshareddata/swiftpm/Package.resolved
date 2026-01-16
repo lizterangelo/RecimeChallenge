@@ -1,0 +1,33 @@
+{
+  "originHash" : "7f7b7b6977554c70989ca882ba1a43a6d513f29c202f19bef1e4a4066be5dd1b",
+  "pins" : [
+    {
+      "identity" : "advancedlist",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/chris-swift-dev/AdvancedList",
+      "state" : {
+        "revision" : "a1d3dad7fa5f7cb5967307bd083a656cf6d598af",
+        "version" : "8.0.0"
+      }
+    },
+    {
+      "identity" : "listpagination",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/crelies/ListPagination",
+      "state" : {
+        "revision" : "af667b368a10512da79605b61698d53c11d24cbf",
+        "version" : "0.1.1"
+      }
+    },
+    {
+      "identity" : "ssswiftuisidemenu",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SimformSolutionsPvtLtd/SSSwiftUISideMenu.git",
+      "state" : {
+        "revision" : "ff2e0908f4604076a755b16f67d9f24d0c7eb933",
+        "version" : "1.0.0"
+      }
+    }
+  ],
+  "version" : 3
+}
