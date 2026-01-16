@@ -23,7 +23,7 @@ const RECIPE_SCHEMA = `
 `;
 
 async function parseRecipeWithGemini(scrapedData) {
-  const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash-lite-preview' });
+  const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash-lite' });
 
   const prompt = `You are a recipe data extractor. Analyze the following scraped data from a recipe webpage and extract the recipe information into a structured JSON format.
 
