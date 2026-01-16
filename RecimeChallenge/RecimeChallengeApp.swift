@@ -11,7 +11,7 @@ import SwiftUI
 struct RecimeChallengeApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainTabView()
         }
     }
 }
