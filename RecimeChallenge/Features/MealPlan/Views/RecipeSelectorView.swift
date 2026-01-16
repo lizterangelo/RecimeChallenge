@@ -85,7 +85,9 @@ struct RecipeSelectorView: View {
         }, content: { recipe in
             RecipeCard(recipe: recipe)
                 .onTapGesture {
-                    onRecipeSelected(recipe)
+                    if let correctRecipe = viewModel.recipes.first(where: { $0.id == recipe.id }) {
+                        onRecipeSelected(correctRecipe)
+                    }
                 }
         }, listState: viewModel.listState, emptyStateView: {
             ContentUnavailableView {

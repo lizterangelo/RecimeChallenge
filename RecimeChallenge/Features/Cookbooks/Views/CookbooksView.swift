@@ -4,8 +4,8 @@ import SwiftUI
 
 struct CookbooksView: View {
     @State private var viewModel = CookbooksViewModel()
-    @State private var selectedCookbook: Cookbook?
-    @State private var selectedRecipe: Recipe?
+    @State private var selectedCookbookId: UUID?
+    @State private var selectedRecipeId: UUID?
 
     var body: some View {
         NavigationStack {
@@ -17,11 +17,15 @@ struct CookbooksView: View {
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar { toolbarContent }
-            .navigationDestination(item: $selectedCookbook) { cookbook in
-                CookbookDetailView(cookbook: cookbook)
+            .navigationDestination(item: $selectedCookbookId) { cookbookId in
+                if let cookbook = viewModel.cookbooks.first(where: { $0.id == cookbookId }) {
+                    CookbookDetailView(cookbook: cookbook)
+                }
             }
-            .navigationDestination(item: $selectedRecipe) { recipe in
-                RecipeDetailView(recipe: recipe)
+            .navigationDestination(item: $selectedRecipeId) { recipeId in
+                if let recipe = viewModel.recipes.first(where: { $0.id == recipeId }) {
+                    RecipeDetailView(recipe: recipe)
+                }
             }
             .task {
                 if viewModel.isEmpty {
@@ -169,7 +173,7 @@ struct CookbooksView: View {
                         "cookbook_id": cookbook.id.uuidString,
                         "cookbook_name": cookbook.name
                     ])
-                    selectedCookbook = cookbook
+                    selectedCookbookId = cookbook.id
                 }
         }, listState: viewModel.listState, emptyStateView: {
             ContentUnavailableView {
@@ -220,7 +224,7 @@ struct CookbooksView: View {
                         "recipe_id": recipe.id.uuidString,
                         "recipe_title": recipe.title
                     ])
-                    selectedRecipe = recipe
+                    selectedRecipeId = recipe.id
                 }
         }, listState: viewModel.listState, emptyStateView: {
             ContentUnavailableView {
