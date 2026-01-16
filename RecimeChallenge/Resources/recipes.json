@@ -6,16 +6,16 @@
     "coverImageURL": null,
     "recipes": [
       {
-        "id": "r0000001-0000-0000-0000-000000000001",
+        "id": "a0000001-0000-0000-0000-000000000001",
         "title": "Classic Margherita Pizza",
         "description": "A traditional Italian pizza with fresh tomatoes, mozzarella, and basil on a crispy thin crust.",
         "servings": 4,
         "ingredients": [
-          {"id": "i0000001-0000-0000-0000-000000000001", "name": "pizza dough", "quantity": "1", "unit": "lb"},
-          {"id": "i0000001-0000-0000-0000-000000000002", "name": "San Marzano tomatoes", "quantity": "1", "unit": "can"},
-          {"id": "i0000001-0000-0000-0000-000000000003", "name": "fresh mozzarella", "quantity": "8", "unit": "oz"},
-          {"id": "i0000001-0000-0000-0000-000000000004", "name": "fresh basil leaves", "quantity": "10", "unit": null},
-          {"id": "i0000001-0000-0000-0000-000000000005", "name": "olive oil", "quantity": "2", "unit": "tbsp"}
+          {"id": "b0000001-0000-0000-0000-000000000001", "name": "pizza dough", "quantity": "1", "unit": "lb"},
+          {"id": "b0000001-0000-0000-0000-000000000002", "name": "San Marzano tomatoes", "quantity": "1", "unit": "can"},
+          {"id": "b0000001-0000-0000-0000-000000000003", "name": "fresh mozzarella", "quantity": "8", "unit": "oz"},
+          {"id": "b0000001-0000-0000-0000-000000000004", "name": "fresh basil leaves", "quantity": "10", "unit": null},
+          {"id": "b0000001-0000-0000-0000-000000000005", "name": "olive oil", "quantity": "2", "unit": "tbsp"}
         ],
         "instructions": [
           "Preheat your oven to 500°F (260°C) with a pizza stone inside.",
@@ -32,17 +32,17 @@
         "cookingTime": 10
       },
       {
-        "id": "r0000001-0000-0000-0000-000000000002",
+        "id": "a0000001-0000-0000-0000-000000000002",
         "title": "Creamy Mushroom Risotto",
         "description": "A luxurious Italian rice dish with earthy mushrooms and Parmesan cheese.",
         "servings": 4,
         "ingredients": [
-          {"id": "i0000002-0000-0000-0000-000000000001", "name": "arborio rice", "quantity": "1.5", "unit": "cups"},
-          {"id": "i0000002-0000-0000-0000-000000000002", "name": "mixed mushrooms", "quantity": "8", "unit": "oz"},
-          {"id": "i0000002-0000-0000-0000-000000000003", "name": "vegetable broth", "quantity": "4", "unit": "cups"},
-          {"id": "i0000002-0000-0000-0000-000000000004", "name": "white wine", "quantity": "0.5", "unit": "cup"},
-          {"id": "i0000002-0000-0000-0000-000000000005", "name": "Parmesan cheese", "quantity": "0.5", "unit": "cup"},
-          {"id": "i0000002-0000-0000-0000-000000000006", "name": "butter", "quantity": "3", "unit": "tbsp"}
+          {"id": "b0000002-0000-0000-0000-000000000001", "name": "arborio rice", "quantity": "1.5", "unit": "cups"},
+          {"id": "b0000002-0000-0000-0000-000000000002", "name": "mixed mushrooms", "quantity": "8", "unit": "oz"},
+          {"id": "b0000002-0000-0000-0000-000000000003", "name": "vegetable broth", "quantity": "4", "unit": "cups"},
+          {"id": "b0000002-0000-0000-0000-000000000004", "name": "white wine", "quantity": "0.5", "unit": "cup"},
+          {"id": "b0000002-0000-0000-0000-000000000005", "name": "Parmesan cheese", "quantity": "0.5", "unit": "cup"},
+          {"id": "b0000002-0000-0000-0000-000000000006", "name": "butter", "quantity": "3", "unit": "tbsp"}
         ],
         "instructions": [
           "Heat the vegetable broth and keep warm.",
@@ -66,16 +66,16 @@
     "coverImageURL": null,
     "recipes": [
       {
-        "id": "r0000002-0000-0000-0000-000000000001",
+        "id": "a0000002-0000-0000-0000-000000000001",
         "title": "Honey Garlic Salmon",
         "description": "Perfectly glazed salmon fillets with a sweet and savory honey garlic sauce.",
         "servings": 2,
         "ingredients": [
-          {"id": "i0000003-0000-0000-0000-000000000001", "name": "salmon fillets", "quantity": "2", "unit": null},
-          {"id": "i0000003-0000-0000-0000-000000000002", "name": "honey", "quantity": "3", "unit": "tbsp"},
-          {"id": "i0000003-0000-0000-0000-000000000003", "name": "garlic", "quantity": "4", "unit": "cloves"},
-          {"id": "i0000003-0000-0000-0000-000000000004", "name": "soy sauce", "quantity": "2", "unit": "tbsp"},
-          {"id": "i0000003-0000-0000-0000-000000000005", "name": "olive oil", "quantity": "1", "unit": "tbsp"}
+          {"id": "b0000003-0000-0000-0000-000000000001", "name": "salmon fillets", "quantity": "2", "unit": null},
+          {"id": "b0000003-0000-0000-0000-000000000002", "name": "honey", "quantity": "3", "unit": "tbsp"},
+          {"id": "b0000003-0000-0000-0000-000000000003", "name": "garlic", "quantity": "4", "unit": "cloves"},
+          {"id": "b0000003-0000-0000-0000-000000000004", "name": "soy sauce", "quantity": "2", "unit": "tbsp"},
+          {"id": "b0000003-0000-0000-0000-000000000005", "name": "olive oil", "quantity": "1", "unit": "tbsp"}
         ],
         "instructions": [
           "Pat salmon dry and season with salt and pepper.",
@@ -90,16 +90,16 @@
         "cookingTime": 15
       },
       {
-        "id": "r0000002-0000-0000-0000-000000000002",
+        "id": "a0000002-0000-0000-0000-000000000002",
         "title": "Classic Beef Tacos",
         "description": "Flavorful seasoned ground beef in crispy taco shells.",
         "servings": 6,
         "ingredients": [
-          {"id": "i0000004-0000-0000-0000-000000000001", "name": "ground beef", "quantity": "1", "unit": "lb"},
-          {"id": "i0000004-0000-0000-0000-000000000002", "name": "taco shells", "quantity": "12", "unit": null},
-          {"id": "i0000004-0000-0000-0000-000000000003", "name": "taco seasoning", "quantity": "1", "unit": "packet"},
-          {"id": "i0000004-0000-0000-0000-000000000004", "name": "shredded lettuce", "quantity": "2", "unit": "cups"},
-          {"id": "i0000004-0000-0000-0000-000000000005", "name": "cheddar cheese", "quantity": "1", "unit": "cup"}
+          {"id": "b0000004-0000-0000-0000-000000000001", "name": "ground beef", "quantity": "1", "unit": "lb"},
+          {"id": "b0000004-0000-0000-0000-000000000002", "name": "taco shells", "quantity": "12", "unit": null},
+          {"id": "b0000004-0000-0000-0000-000000000003", "name": "taco seasoning", "quantity": "1", "unit": "packet"},
+          {"id": "b0000004-0000-0000-0000-000000000004", "name": "shredded lettuce", "quantity": "2", "unit": "cups"},
+          {"id": "b0000004-0000-0000-0000-000000000005", "name": "cheddar cheese", "quantity": "1", "unit": "cup"}
         ],
         "instructions": [
           "Brown ground beef and drain fat.",
@@ -121,17 +121,17 @@
     "coverImageURL": null,
     "recipes": [
       {
-        "id": "r0000003-0000-0000-0000-000000000001",
+        "id": "a0000003-0000-0000-0000-000000000001",
         "title": "Quinoa Buddha Bowl",
         "description": "A nourishing bowl with quinoa, roasted vegetables, and tahini dressing.",
         "servings": 2,
         "ingredients": [
-          {"id": "i0000005-0000-0000-0000-000000000001", "name": "quinoa", "quantity": "1", "unit": "cup"},
-          {"id": "i0000005-0000-0000-0000-000000000002", "name": "chickpeas", "quantity": "1", "unit": "can"},
-          {"id": "i0000005-0000-0000-0000-000000000003", "name": "sweet potato", "quantity": "1", "unit": "large"},
-          {"id": "i0000005-0000-0000-0000-000000000004", "name": "kale", "quantity": "2", "unit": "cups"},
-          {"id": "i0000005-0000-0000-0000-000000000005", "name": "tahini", "quantity": "3", "unit": "tbsp"},
-          {"id": "i0000005-0000-0000-0000-000000000006", "name": "avocado", "quantity": "1", "unit": null}
+          {"id": "b0000005-0000-0000-0000-000000000001", "name": "quinoa", "quantity": "1", "unit": "cup"},
+          {"id": "b0000005-0000-0000-0000-000000000002", "name": "chickpeas", "quantity": "1", "unit": "can"},
+          {"id": "b0000005-0000-0000-0000-000000000003", "name": "sweet potato", "quantity": "1", "unit": "large"},
+          {"id": "b0000005-0000-0000-0000-000000000004", "name": "kale", "quantity": "2", "unit": "cups"},
+          {"id": "b0000005-0000-0000-0000-000000000005", "name": "tahini", "quantity": "3", "unit": "tbsp"},
+          {"id": "b0000005-0000-0000-0000-000000000006", "name": "avocado", "quantity": "1", "unit": null}
         ],
         "instructions": [
           "Cook quinoa according to package directions.",
@@ -146,17 +146,17 @@
         "cookingTime": 25
       },
       {
-        "id": "r0000003-0000-0000-0000-000000000002",
+        "id": "a0000003-0000-0000-0000-000000000002",
         "title": "Mediterranean Chickpea Salad",
         "description": "A refreshing salad with chickpeas, cucumber, tomatoes, and feta.",
         "servings": 4,
         "ingredients": [
-          {"id": "i0000006-0000-0000-0000-000000000001", "name": "chickpeas", "quantity": "2", "unit": "cans"},
-          {"id": "i0000006-0000-0000-0000-000000000002", "name": "cucumber", "quantity": "1", "unit": "large"},
-          {"id": "i0000006-0000-0000-0000-000000000003", "name": "cherry tomatoes", "quantity": "1", "unit": "pint"},
-          {"id": "i0000006-0000-0000-0000-000000000004", "name": "feta cheese", "quantity": "4", "unit": "oz"},
-          {"id": "i0000006-0000-0000-0000-000000000005", "name": "kalamata olives", "quantity": "0.5", "unit": "cup"},
-          {"id": "i0000006-0000-0000-0000-000000000006", "name": "olive oil", "quantity": "3", "unit": "tbsp"}
+          {"id": "b0000006-0000-0000-0000-000000000001", "name": "chickpeas", "quantity": "2", "unit": "cans"},
+          {"id": "b0000006-0000-0000-0000-000000000002", "name": "cucumber", "quantity": "1", "unit": "large"},
+          {"id": "b0000006-0000-0000-0000-000000000003", "name": "cherry tomatoes", "quantity": "1", "unit": "pint"},
+          {"id": "b0000006-0000-0000-0000-000000000004", "name": "feta cheese", "quantity": "4", "unit": "oz"},
+          {"id": "b0000006-0000-0000-0000-000000000005", "name": "kalamata olives", "quantity": "0.5", "unit": "cup"},
+          {"id": "b0000006-0000-0000-0000-000000000006", "name": "olive oil", "quantity": "3", "unit": "tbsp"}
         ],
         "instructions": [
           "Drain and rinse chickpeas.",
@@ -171,17 +171,17 @@
         "cookingTime": 0
       },
       {
-        "id": "r0000003-0000-0000-0000-000000000003",
+        "id": "a0000003-0000-0000-0000-000000000003",
         "title": "Vegan Black Bean Soup",
         "description": "A hearty and smoky soup loaded with black beans and vegetables.",
         "servings": 6,
         "ingredients": [
-          {"id": "i0000007-0000-0000-0000-000000000001", "name": "black beans", "quantity": "3", "unit": "cans"},
-          {"id": "i0000007-0000-0000-0000-000000000002", "name": "vegetable broth", "quantity": "4", "unit": "cups"},
-          {"id": "i0000007-0000-0000-0000-000000000003", "name": "onion", "quantity": "1", "unit": "large"},
-          {"id": "i0000007-0000-0000-0000-000000000004", "name": "bell pepper", "quantity": "1", "unit": null},
-          {"id": "i0000007-0000-0000-0000-000000000005", "name": "cumin", "quantity": "2", "unit": "tsp"},
-          {"id": "i0000007-0000-0000-0000-000000000006", "name": "smoked paprika", "quantity": "1", "unit": "tsp"}
+          {"id": "b0000007-0000-0000-0000-000000000001", "name": "black beans", "quantity": "3", "unit": "cans"},
+          {"id": "b0000007-0000-0000-0000-000000000002", "name": "vegetable broth", "quantity": "4", "unit": "cups"},
+          {"id": "b0000007-0000-0000-0000-000000000003", "name": "onion", "quantity": "1", "unit": "large"},
+          {"id": "b0000007-0000-0000-0000-000000000004", "name": "bell pepper", "quantity": "1", "unit": null},
+          {"id": "b0000007-0000-0000-0000-000000000005", "name": "cumin", "quantity": "2", "unit": "tsp"},
+          {"id": "b0000007-0000-0000-0000-000000000006", "name": "smoked paprika", "quantity": "1", "unit": "tsp"}
         ],
         "instructions": [
           "Sauté onion and bell pepper until soft.",
@@ -204,17 +204,17 @@
     "coverImageURL": null,
     "recipes": [
       {
-        "id": "r0000004-0000-0000-0000-000000000001",
+        "id": "a0000004-0000-0000-0000-000000000001",
         "title": "Thai Green Curry",
         "description": "A fragrant and spicy curry with vegetables in creamy coconut milk.",
         "servings": 4,
         "ingredients": [
-          {"id": "i0000008-0000-0000-0000-000000000001", "name": "green curry paste", "quantity": "3", "unit": "tbsp"},
-          {"id": "i0000008-0000-0000-0000-000000000002", "name": "coconut milk", "quantity": "400", "unit": "ml"},
-          {"id": "i0000008-0000-0000-0000-000000000003", "name": "chicken breast", "quantity": "1", "unit": "lb"},
-          {"id": "i0000008-0000-0000-0000-000000000004", "name": "bamboo shoots", "quantity": "1", "unit": "cup"},
-          {"id": "i0000008-0000-0000-0000-000000000005", "name": "Thai basil", "quantity": "1", "unit": "cup"},
-          {"id": "i0000008-0000-0000-0000-000000000006", "name": "fish sauce", "quantity": "2", "unit": "tbsp"}
+          {"id": "b0000008-0000-0000-0000-000000000001", "name": "green curry paste", "quantity": "3", "unit": "tbsp"},
+          {"id": "b0000008-0000-0000-0000-000000000002", "name": "coconut milk", "quantity": "400", "unit": "ml"},
+          {"id": "b0000008-0000-0000-0000-000000000003", "name": "chicken breast", "quantity": "1", "unit": "lb"},
+          {"id": "b0000008-0000-0000-0000-000000000004", "name": "bamboo shoots", "quantity": "1", "unit": "cup"},
+          {"id": "b0000008-0000-0000-0000-000000000005", "name": "Thai basil", "quantity": "1", "unit": "cup"},
+          {"id": "b0000008-0000-0000-0000-000000000006", "name": "fish sauce", "quantity": "2", "unit": "tbsp"}
         ],
         "instructions": [
           "Fry curry paste in coconut cream for 2 minutes.",
