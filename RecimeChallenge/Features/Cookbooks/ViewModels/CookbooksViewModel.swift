@@ -9,7 +9,7 @@ final class CookbooksViewModel {
 
     // MARK: - Mode State
 
-    var contentMode: ContentMode = .cookbooks {
+    var contentMode: ContentMode = .allRecipes {
         didSet {
             if oldValue != contentMode {
                 Task { await handleModeChange() }
@@ -27,6 +27,14 @@ final class CookbooksViewModel {
         }
     }
     private var searchTask: Task<Void, Never>?
+
+    var recipeFilters: RecipeFilters = .empty {
+        didSet {
+            if oldValue != recipeFilters {
+                Task { await handleFilterChange() }
+            }
+        }
+    }
 
     // MARK: - List State (AdvancedList)
 
@@ -133,6 +141,25 @@ final class CookbooksViewModel {
         }
     }
 
+    private func handleFilterChange() async {
+        guard contentMode == .allRecipes else { return }
+
+        // Track filter usage if filters are active
+        if recipeFilters.isActive {
+            AnalyticsService.shared.track(.filtersApplied, properties: [
+                "is_vegetarian": recipeFilters.isVegetarian ?? false,
+                "servings": recipeFilters.servings ?? 0,
+                "included_ingredients_count": recipeFilters.includedIngredients.count,
+                "excluded_ingredients_count": recipeFilters.excludedIngredients.count,
+                "has_instruction_search": recipeFilters.searchInInstructions != nil
+            ])
+        }
+
+        recipesCurrentPage = 0
+        recipesHasMorePages = true
+        await loadInitialRecipes()
+    }
+
     // MARK: - Cookbook Loading
 
     func loadInitialCookbooks() async {
@@ -205,8 +232,13 @@ final class CookbooksViewModel {
         recipesCurrentPage = 1
 
         do {
-            let query = searchText.isEmpty ? nil : searchText
-            let response = try await apiClient.fetchRecipes(page: 1, pageSize: pageSize, searchQuery: query)
+            let request = RecipeSearchRequest(
+                page: 1,
+                pageSize: pageSize,
+                searchQuery: searchText.isEmpty ? nil : searchText,
+                filters: recipeFilters.isActive ? recipeFilters : nil
+            )
+            let response = try await apiClient.fetchRecipes(request)
             recipes = response.items
             recipesHasMorePages = response.hasNextPage
             recipesTotalCount = response.totalCount
@@ -225,8 +257,13 @@ final class CookbooksViewModel {
         let nextPage = recipesCurrentPage + 1
 
         do {
-            let query = searchText.isEmpty ? nil : searchText
-            let response = try await apiClient.fetchRecipes(page: nextPage, pageSize: pageSize, searchQuery: query)
+            let request = RecipeSearchRequest(
+                page: nextPage,
+                pageSize: pageSize,
+                searchQuery: searchText.isEmpty ? nil : searchText,
+                filters: recipeFilters.isActive ? recipeFilters : nil
+            )
+            let response = try await apiClient.fetchRecipes(request)
             recipes.append(contentsOf: response.items)
             recipesCurrentPage = nextPage
             recipesHasMorePages = response.hasNextPage

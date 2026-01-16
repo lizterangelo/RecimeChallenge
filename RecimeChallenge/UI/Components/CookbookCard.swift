@@ -49,27 +49,31 @@ struct CookbookCard: View {
             HStack(spacing: 2) {
                 Image(recipeImages[0])
                     .resizable()
-                    .aspectRatio(contentMode: .fit)
+                    .aspectRatio(contentMode: .fill)
                     .frame(width: leftWidth, height: 100)
                     .clipped()
+                    .contentShape(Rectangle())
 
                 VStack(spacing: 2) {
                     Image(recipeImages[1])
                         .resizable()
-                        .aspectRatio(contentMode: .fit)
+                        .aspectRatio(contentMode: .fill)
                         .frame(width: rightWidth, height: 49)
                         .clipped()
+                        .contentShape(Rectangle())
 
                     Image(recipeImages[2])
                         .resizable()
-                        .aspectRatio(contentMode: .fit)
+                        .aspectRatio(contentMode: .fill)
                         .frame(width: rightWidth, height: 49)
                         .clipped()
+                        .contentShape(Rectangle())
                 }
             }
         }
         .frame(height: 100)
         .clipShape(RoundedRectangle(cornerRadius: 8))
+        .contentShape(Rectangle())
     }
 
     private var placeholderImage: some View {

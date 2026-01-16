@@ -15,6 +15,10 @@ enum AnalyticsEvent: String {
     // Search
     case searchPerformed = "search_performed"
 
+    // Filters
+    case filtersOpened = "filters_opened"
+    case filtersApplied = "filters_applied"
+
     // Groceries
     case groceryItemAdded = "grocery_item_added"
     case groceryItemToggled = "grocery_item_toggled"

@@ -9,9 +9,11 @@ struct RecipeCard: View {
                 if let imageName = recipe.imageURL {
                     Image(imageName)
                         .resizable()
-                        .aspectRatio(contentMode: .fit)
+                        .aspectRatio(contentMode: .fill)
+                        .frame(maxWidth: .infinity)
                         .frame(height: 120)
                         .clipped()
+                        .contentShape(Rectangle())
                 }
 
                 VStack(alignment: .leading, spacing: 12) {

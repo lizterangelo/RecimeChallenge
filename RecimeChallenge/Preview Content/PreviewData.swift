@@ -121,9 +121,9 @@ private final class PreviewMockAPIClient: APIClientProtocol, @unchecked Sendable
         )
     }
 
-    func fetchRecipes(page: Int, pageSize: Int, searchQuery: String?) async throws -> PaginatedResponse<Recipe> {
+    func fetchRecipes(_ request: RecipeSearchRequest) async throws -> PaginatedResponse<Recipe> {
         var recipes = PreviewData.sampleRecipes
-        if let query = searchQuery?.lowercased(), !query.isEmpty {
+        if let query = request.searchQuery?.lowercased(), !query.isEmpty {
             recipes = recipes.filter {
                 $0.title.lowercased().contains(query) ||
                 $0.description.lowercased().contains(query)
@@ -132,8 +132,8 @@ private final class PreviewMockAPIClient: APIClientProtocol, @unchecked Sendable
         return PaginatedResponse(
             items: recipes,
             totalCount: recipes.count,
-            page: page,
-            pageSize: pageSize
+            page: request.page,
+            pageSize: request.pageSize
         )
     }
 

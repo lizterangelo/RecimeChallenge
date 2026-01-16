@@ -32,19 +32,66 @@ final class MockAPIClient: APIClientProtocol, @unchecked Sendable {
         return paginate(cookbooks, page: page, pageSize: pageSize)
     }
 
-    func fetchRecipes(page: Int, pageSize: Int, searchQuery: String?) async throws -> PaginatedResponse<Recipe> {
+    func fetchRecipes(_ request: RecipeSearchRequest) async throws -> PaginatedResponse<Recipe> {
         try await Task.sleep(for: simulatedDelay)
 
         var recipes = try loadAllRecipes()
 
-        if let query = searchQuery?.lowercased(), !query.isEmpty {
+        // Text search (title and description)
+        if let query = request.searchQuery?.lowercased(), !query.isEmpty {
             recipes = recipes.filter { recipe in
                 recipe.title.lowercased().contains(query) ||
                 recipe.description.lowercased().contains(query)
             }
         }
 
-        return paginate(recipes, page: page, pageSize: pageSize)
+        // Apply advanced filters
+        if let filters = request.filters {
+            // Vegetarian filter
+            if let isVegetarian = filters.isVegetarian, isVegetarian {
+                recipes = recipes.filter { recipe in
+                    recipe.dietaryAttributes.contains { $0.rawValue.lowercased() == "vegetarian" }
+                }
+            }
+
+            // Servings filter
+            if let servings = filters.servings {
+                recipes = recipes.filter { $0.servings == servings }
+            }
+
+            // Include ingredients filter
+            if !filters.includedIngredients.isEmpty {
+                recipes = recipes.filter { recipe in
+                    filters.includedIngredients.allSatisfy { ingredient in
+                        recipe.ingredients.contains {
+                            $0.name.lowercased().contains(ingredient.lowercased())
+                        }
+                    }
+                }
+            }
+
+            // Exclude ingredients filter
+            if !filters.excludedIngredients.isEmpty {
+                recipes = recipes.filter { recipe in
+                    !filters.excludedIngredients.contains { ingredient in
+                        recipe.ingredients.contains {
+                            $0.name.lowercased().contains(ingredient.lowercased())
+                        }
+                    }
+                }
+            }
+
+            // Search in instructions
+            if let instructionQuery = filters.searchInInstructions?.lowercased(), !instructionQuery.isEmpty {
+                recipes = recipes.filter { recipe in
+                    recipe.instructions.contains { instruction in
+                        instruction.lowercased().contains(instructionQuery)
+                    }
+                }
+            }
+        }
+
+        return paginate(recipes, page: request.page, pageSize: request.pageSize)
     }
 
     func fetchRecipes() async throws -> [Recipe] {

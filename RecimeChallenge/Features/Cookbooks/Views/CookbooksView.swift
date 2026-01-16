@@ -6,6 +6,7 @@ struct CookbooksView: View {
     @State private var viewModel = CookbooksViewModel()
     @State private var selectedCookbook: Cookbook?
     @State private var selectedRecipe: Recipe?
+    @State private var showFilters = false
 
     var body: some View {
         NavigationStack {
@@ -25,7 +26,7 @@ struct CookbooksView: View {
             }
             .task {
                 if viewModel.isEmpty {
-                    await viewModel.loadInitialCookbooks()
+                    await viewModel.loadInitialRecipes()
                 }
             }
             .refreshable {
@@ -104,29 +105,42 @@ struct CookbooksView: View {
     // MARK: - Search Bar
 
     private var searchBar: some View {
-        HStack {
-            Image(systemName: "magnifyingglass")
-                .foregroundStyle(.secondary)
+        HStack(spacing: 8) {
+            HStack {
+                Image(systemName: "magnifyingglass")
+                    .foregroundStyle(.secondary)
 
-            TextField(searchPlaceholder, text: $viewModel.searchText)
-                .font(AppFont.body)
-                .textInputAutocapitalization(.never)
-                .autocorrectionDisabled()
+                TextField(searchPlaceholder, text: $viewModel.searchText)
+                    .font(AppFont.body)
+                    .textInputAutocapitalization(.never)
+                    .autocorrectionDisabled()
 
-            if !viewModel.searchText.isEmpty {
-                Button {
-                    viewModel.searchText = ""
-                } label: {
-                    Image(systemName: "xmark.circle.fill")
-                        .foregroundStyle(.secondary)
+                if !viewModel.searchText.isEmpty {
+                    Button {
+                        viewModel.searchText = ""
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundStyle(.secondary)
+                    }
+                }
+            }
+            .padding(.horizontal, 12)
+            .padding(.vertical, 10)
+            .background(.ultraThinMaterial)
+            .clipShape(RoundedRectangle(cornerRadius: 12))
+
+            // Show filters button only in recipes mode
+            if viewModel.contentMode == .allRecipes {
+                FilterButton(isActive: viewModel.recipeFilters.isActive) {
+                    AnalyticsService.shared.track(.filtersOpened)
+                    showFilters = true
                 }
             }
         }
-        .padding(.horizontal, 12)
-        .padding(.vertical, 10)
-        .background(.ultraThinMaterial)
-        .clipShape(RoundedRectangle(cornerRadius: 12))
         .padding(.horizontal)
+        .sheet(isPresented: $showFilters) {
+            RecipeFiltersSheet(filters: $viewModel.recipeFilters)
+        }
     }
 
     private var searchPlaceholder: String {
