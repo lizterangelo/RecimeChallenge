@@ -656,6 +656,15 @@ const baseRecipeTemplates = [
   }
 ];
 
+// Recipe photo assets (randomly assigned to recipes)
+const recipeImages = [
+  "recipe-photo-1",
+  "recipe-photo-2",
+  "recipe-photo-3",
+  "recipe-photo-4",
+  "recipe-photo-5"
+];
+
 const categories = [
   "Breakfast", "Lunch", "Dinner", "Desserts", "Snacks",
   "Appetizers", "Soups", "Salads", "Pasta", "Seafood",
@@ -731,7 +740,7 @@ function generateRecipesForCookbook(cookbookIndex, count) {
       ingredients: ingredients,
       instructions: template.instructions,
       dietaryAttributes: template.dietaryAttributes,
-      imageURL: null,
+      imageURL: recipeImages[Math.floor(Math.random() * recipeImages.length)],
       preparationTime: template.preparationTime,
       cookingTime: template.cookingTime
     });

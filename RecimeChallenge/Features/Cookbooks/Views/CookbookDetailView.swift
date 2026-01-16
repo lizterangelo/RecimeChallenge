@@ -29,12 +29,12 @@ struct CookbookDetailView: View {
         GlassCard {
             VStack(alignment: .leading, spacing: 8) {
                 Text(cookbook.description)
-                    .font(.subheadline)
+                    .font(AppFont.subheadline)
                     .foregroundStyle(.secondary)
 
                 HStack {
                     Label("\(cookbook.recipeCount) recipes", systemImage: "book")
-                        .font(.caption)
+                        .font(AppFont.caption)
                         .foregroundStyle(.tertiary)
                 }
             }

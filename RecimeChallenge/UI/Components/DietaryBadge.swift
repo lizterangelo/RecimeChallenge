@@ -5,7 +5,7 @@ struct DietaryBadge: View {
 
     var body: some View {
         Text(attribute.displayName)
-            .font(.caption2)
+            .font(AppFont.caption2)
             .fontWeight(.medium)
             .padding(.horizontal, 8)
             .padding(.vertical, 4)

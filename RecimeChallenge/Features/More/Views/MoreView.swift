@@ -72,24 +72,24 @@ struct MoreView: View {
         ScrollView {
             VStack(spacing: 24) {
                 Image(systemName: "book.closed.fill")
-                    .font(.system(size: 60))
+                    .font(AppFont.iconLarge)
                     .foregroundStyle(Color.accentColor)
 
                 Text("RecimeChallenge")
-                    .font(.title)
+                    .font(AppFont.title)
                     .fontWeight(.bold)
 
                 Text("Version 1.0.0")
-                    .font(.subheadline)
+                    .font(AppFont.subheadline)
                     .foregroundStyle(.secondary)
 
                 GlassCard {
                     VStack(alignment: .leading, spacing: 12) {
                         Text("About")
-                            .font(.headline)
+                            .font(AppFont.headline)
 
                         Text("A beautiful recipe app built with SwiftUI featuring liquid glass design, cookbook organization, meal planning, and grocery lists.")
-                            .font(.body)
+                            .font(AppFont.body)
                             .foregroundStyle(.secondary)
                     }
                     .padding()

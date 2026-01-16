@@ -27,9 +27,9 @@ struct GlassCard<Content: View>: View {
         GlassCard {
             VStack(alignment: .leading, spacing: 8) {
                 Text("Glass Card")
-                    .font(.headline)
+                    .font(AppFont.headline)
                 Text("This is a card with the liquid glass effect")
-                    .font(.subheadline)
+                    .font(AppFont.subheadline)
                     .foregroundStyle(.secondary)
             }
             .padding()

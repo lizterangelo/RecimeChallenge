@@ -10,7 +10,7 @@ struct LoadingView: View {
 
             if let message {
                 Text(message)
-                    .font(.subheadline)
+                    .font(AppFont.subheadline)
                     .foregroundStyle(.secondary)
             }
         }

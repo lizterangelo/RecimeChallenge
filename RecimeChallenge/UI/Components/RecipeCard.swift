@@ -5,43 +5,53 @@ struct RecipeCard: View {
 
     var body: some View {
         GlassCard {
-            VStack(alignment: .leading, spacing: 12) {
-                HStack {
-                    Text(recipe.title)
-                        .font(.headline)
-                        .lineLimit(1)
-
-                    Spacer()
-
-                    if let time = recipe.totalTimeFormatted {
-                        Label(time, systemImage: "clock")
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                    }
+            VStack(alignment: .leading, spacing: 0) {
+                if let imageName = recipe.imageURL {
+                    Image(imageName)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(height: 120)
+                        .clipped()
                 }
 
-                Text(recipe.description)
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-                    .lineLimit(2)
+                VStack(alignment: .leading, spacing: 12) {
+                    HStack {
+                        Text(recipe.title)
+                            .font(AppFont.headline)
+                            .lineLimit(1)
 
-                HStack(spacing: 12) {
-                    Label("\(recipe.servings)", systemImage: "person.2")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
+                        Spacer()
 
-                    if !recipe.dietaryAttributes.isEmpty {
-                        HStack(spacing: 4) {
-                            ForEach(recipe.dietaryAttributes.prefix(2)) { attribute in
-                                DietaryBadge(attribute: attribute)
-                            }
+                        if let time = recipe.totalTimeFormatted {
+                            Label(time, systemImage: "clock")
+                                .font(AppFont.caption)
+                                .foregroundStyle(.secondary)
                         }
                     }
 
-                    Spacer()
+                    Text(recipe.description)
+                        .font(AppFont.subheadline)
+                        .foregroundStyle(.secondary)
+                        .lineLimit(2)
+
+                    HStack(spacing: 12) {
+                        Label("\(recipe.servings)", systemImage: "person.2")
+                            .font(AppFont.caption)
+                            .foregroundStyle(.secondary)
+
+                        if !recipe.dietaryAttributes.isEmpty {
+                            HStack(spacing: 4) {
+                                ForEach(recipe.dietaryAttributes.prefix(2)) { attribute in
+                                    DietaryBadge(attribute: attribute)
+                                }
+                            }
+                        }
+
+                        Spacer()
+                    }
                 }
+                .padding()
             }
-            .padding()
         }
     }
 }
@@ -58,7 +68,7 @@ struct RecipeCard: View {
             ingredients: [],
             instructions: [],
             dietaryAttributes: [.vegetarian],
-            imageURL: nil,
+            imageURL: "recipe-photo-1",
             preparationTime: 20,
             cookingTime: 10
         ))

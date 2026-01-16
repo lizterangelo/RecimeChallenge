@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		6EF1F5762F1A564100CD42E8 /* AdvancedList in Frameworks */ = {isa = PBXBuildFile; productRef = 6EF1F5752F1A564100CD42E8 /* AdvancedList */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		6EF1F1792F1A109000CD42E8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6EF1F5762F1A564100CD42E8 /* AdvancedList in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +117,7 @@
 			);
 			name = RecimeChallenge;
 			packageProductDependencies = (
+				6EF1F5752F1A564100CD42E8 /* AdvancedList */,
 			);
 			productName = RecimeChallenge;
 			productReference = 6EF1F16B2F1A108F00CD42E8 /* ReciMe Challenge.app */;
@@ -195,6 +201,9 @@
 			);
 			mainGroup = 6EF1F1622F1A108F00CD42E8;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				6EF1F5742F1A564100CD42E8 /* XCRemoteSwiftPackageReference "AdvancedList" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 6EF1F16C2F1A108F00CD42E8 /* Products */;
 			projectDirPath = "";
@@ -586,6 +595,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6EF1F5742F1A564100CD42E8 /* XCRemoteSwiftPackageReference "AdvancedList" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/chris-swift-dev/AdvancedList";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6EF1F5752F1A564100CD42E8 /* AdvancedList */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6EF1F5742F1A564100CD42E8 /* XCRemoteSwiftPackageReference "AdvancedList" */;
+			productName = AdvancedList;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6EF1F1632F1A108F00CD42E8 /* Project object */;
 }

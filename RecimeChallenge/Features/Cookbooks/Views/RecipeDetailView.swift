@@ -5,13 +5,24 @@ struct RecipeDetailView: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 24) {
-                headerSection
-                infoSection
-                ingredientsSection
-                instructionsSection
+            VStack(alignment: .leading, spacing: 0) {
+                if let imageName = recipe.imageURL {
+                    Image(imageName)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(height: 200)
+                        .frame(maxWidth: .infinity)
+                        .clipped()
+                }
+
+                VStack(alignment: .leading, spacing: 24) {
+                    headerSection
+                    infoSection
+                    ingredientsSection
+                    instructionsSection
+                }
+                .padding()
             }
-            .padding()
         }
         .navigationTitle(recipe.title)
         .navigationBarTitleDisplayMode(.inline)
@@ -20,11 +31,11 @@ struct RecipeDetailView: View {
     private var headerSection: some View {
         VStack(alignment: .leading, spacing: 12) {
             Text(recipe.title)
-                .font(.title)
+                .font(AppFont.title)
                 .fontWeight(.bold)
 
             Text(recipe.description)
-                .font(.body)
+                .font(AppFont.body)
                 .foregroundStyle(.secondary)
 
             if !recipe.dietaryAttributes.isEmpty {
@@ -63,14 +74,14 @@ struct RecipeDetailView: View {
     private func infoItem(icon: String, title: String, value: String) -> some View {
         VStack(spacing: 4) {
             Image(systemName: icon)
-                .font(.title2)
+                .font(AppFont.title2)
                 .foregroundStyle(Color.accentColor)
 
             Text(value)
-                .font(.headline)
+                .font(AppFont.headline)
 
             Text(title)
-                .font(.caption)
+                .font(AppFont.caption)
                 .foregroundStyle(.secondary)
         }
         .frame(maxWidth: .infinity)
@@ -79,7 +90,7 @@ struct RecipeDetailView: View {
     private var ingredientsSection: some View {
         VStack(alignment: .leading, spacing: 12) {
             Label("Ingredients", systemImage: "basket")
-                .font(.title2)
+                .font(AppFont.title2)
                 .fontWeight(.semibold)
 
             GlassCard {
@@ -87,11 +98,11 @@ struct RecipeDetailView: View {
                     ForEach(recipe.ingredients) { ingredient in
                         HStack {
                             Image(systemName: "circle.fill")
-                                .font(.system(size: 6))
+                                .font(AppFont.bulletPoint)
                                 .foregroundStyle(.secondary)
 
                             Text(ingredient.displayText)
-                                .font(.body)
+                                .font(AppFont.body)
 
                             Spacer()
                         }
@@ -105,7 +116,7 @@ struct RecipeDetailView: View {
     private var instructionsSection: some View {
         VStack(alignment: .leading, spacing: 12) {
             Label("Instructions", systemImage: "list.number")
-                .font(.title2)
+                .font(AppFont.title2)
                 .fontWeight(.semibold)
 
             GlassCard {
@@ -113,12 +124,12 @@ struct RecipeDetailView: View {
                     ForEach(Array(recipe.instructions.enumerated()), id: \.offset) { index, instruction in
                         HStack(alignment: .top, spacing: 12) {
                             Text("\(index + 1)")
-                                .font(.headline)
+                                .font(AppFont.headline)
                                 .foregroundStyle(Color.accentColor)
                                 .frame(width: 24)
 
                             Text(instruction)
-                                .font(.body)
+                                .font(AppFont.body)
                         }
                     }
                 }
@@ -148,7 +159,7 @@ struct RecipeDetailView: View {
                 "Bake for 8-10 minutes until crust is golden."
             ],
             dietaryAttributes: [.vegetarian],
-            imageURL: nil,
+            imageURL: "recipe-photo-1",
             preparationTime: 20,
             cookingTime: 10
         ))

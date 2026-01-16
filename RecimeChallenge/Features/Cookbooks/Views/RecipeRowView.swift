@@ -7,22 +7,22 @@ struct RecipeRowView: View {
         HStack(spacing: 12) {
             VStack(alignment: .leading, spacing: 4) {
                 Text(recipe.title)
-                    .font(.headline)
+                    .font(AppFont.headline)
                     .lineLimit(1)
 
                 Text(recipe.description)
-                    .font(.subheadline)
+                    .font(AppFont.subheadline)
                     .foregroundStyle(.secondary)
                     .lineLimit(2)
 
                 HStack(spacing: 8) {
                     Label("\(recipe.servings)", systemImage: "person.2")
-                        .font(.caption)
+                        .font(AppFont.caption)
                         .foregroundStyle(.tertiary)
 
                     if let time = recipe.totalTimeFormatted {
                         Label(time, systemImage: "clock")
-                            .font(.caption)
+                            .font(AppFont.caption)
                             .foregroundStyle(.tertiary)
                     }
 
@@ -35,7 +35,7 @@ struct RecipeRowView: View {
             Spacer()
 
             Image(systemName: "chevron.right")
-                .font(.caption)
+                .font(AppFont.caption)
                 .foregroundStyle(.tertiary)
         }
         .padding(.vertical, 4)

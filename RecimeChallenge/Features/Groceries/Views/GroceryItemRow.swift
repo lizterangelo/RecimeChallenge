@@ -9,20 +9,20 @@ struct GroceryItemRow: View {
         HStack(spacing: 12) {
             Button(action: onToggle) {
                 Image(systemName: item.isChecked ? "checkmark.circle.fill" : "circle")
-                    .font(.title2)
+                    .font(AppFont.title2)
                     .foregroundStyle(item.isChecked ? .green : .secondary)
             }
             .buttonStyle(.plain)
 
             VStack(alignment: .leading, spacing: 2) {
                 Text(item.name)
-                    .font(.body)
+                    .font(AppFont.body)
                     .strikethrough(item.isChecked)
                     .foregroundStyle(item.isChecked ? .secondary : .primary)
 
                 if !item.quantity.isEmpty {
                     Text(item.quantity)
-                        .font(.caption)
+                        .font(AppFont.caption)
                         .foregroundStyle(.tertiary)
                 }
             }
@@ -31,7 +31,7 @@ struct GroceryItemRow: View {
 
             Button(action: onDelete) {
                 Image(systemName: "trash")
-                    .font(.caption)
+                    .font(AppFont.caption)
                     .foregroundStyle(.red.opacity(0.7))
             }
             .buttonStyle(.plain)

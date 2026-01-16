@@ -14,15 +14,15 @@ enum AppFont {
         }
 
         static func medium(_ size: CGFloat) -> Font {
-            .custom("FONTSPRINGDEMO-RecoletaMedium", size: size)
+            .custom("FONTSPRINGDEMO-RecoletaMediumRegular", size: size)
         }
 
         static func semiBold(_ size: CGFloat) -> Font {
-            .custom("FONTSPRINGDEMO-RecoletaSemiBold", size: size)
+            .custom("FONTSPRINGDEMO-RecoletaSemiBoldRegular", size: size)
         }
 
         static func bold(_ size: CGFloat) -> Font {
-            .custom("FONTSPRINGDEMO-RecoletaBold", size: size)
+            .custom("FONTSPRINGDEMO-RecoletaBoldRegular", size: size)
         }
     }
 
@@ -55,8 +55,13 @@ enum AppFont {
 // MARK: - Semantic Typography
 
 extension AppFont {
-    /// App title - "ReciMe Challenge" (Recoleta Bold 28pt)
-    static let appTitle = Recoleta.bold(28)
+    // MARK: - App Title (Recoleta)
+
+    /// App title main text - "ReciMe" (Recoleta Bold 22pt)
+    static let appTitleMain = Recoleta.bold(22)
+
+    /// App title subtitle - "Challenge" (Recoleta Bold 11pt)
+    static let appTitleSub = Recoleta.bold(11)
 
     // MARK: - Headings (Poppins)
 
@@ -94,15 +99,12 @@ extension AppFont {
 
     /// Caption 2 - 10pt Light
     static let caption2 = Poppins.light(10)
-}
 
-// MARK: - View Modifier
+    // MARK: - Special Sizes
 
-extension View {
-    /// Apply app title style (Recoleta Bold + Primary Color)
-    func appTitleStyle() -> some View {
-        self
-            .font(AppFont.appTitle)
-            .foregroundStyle(AppColors.primary)
-    }
+    /// Large icon size - 60pt Regular
+    static let iconLarge = Poppins.regular(60)
+
+    /// Bullet point - 6pt Regular
+    static let bulletPoint = Poppins.regular(6)
 }

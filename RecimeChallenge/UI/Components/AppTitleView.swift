@@ -12,12 +12,16 @@ struct AppTitleView: View {
                     .renderingMode(.template)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 44, height: 44)
+                    .frame(width: 36, height: 36)
                     .foregroundStyle(AppColors.primary)
             }
-            Text("ReciMe Challenge")
-                .font(AppFont.appTitle)
-                .foregroundStyle(AppColors.primary)
+            HStack(alignment: .firstTextBaseline, spacing: 4) {
+                Text("ReciMe")
+                    .font(AppFont.appTitleMain)
+                Text("Challenge")
+                    .font(AppFont.appTitleSub)
+            }
+            .foregroundStyle(AppColors.primary)
         }
     }
 }

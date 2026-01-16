@@ -63,11 +63,11 @@ struct DayButton: View {
         Button(action: action) {
             VStack(spacing: 4) {
                 Text(dayFormatter.string(from: date))
-                    .font(.caption)
+                    .font(AppFont.caption)
                     .foregroundStyle(isSelected ? .white : .secondary)
 
                 Text(dateFormatter.string(from: date))
-                    .font(.title3)
+                    .font(AppFont.title3)
                     .fontWeight(.semibold)
                     .foregroundStyle(isSelected ? .white : .primary)
 
@@ -92,21 +92,21 @@ struct MealSlotCard: View {
         GlassCard {
             HStack(spacing: 16) {
                 Image(systemName: icon)
-                    .font(.title2)
+                    .font(AppFont.title2)
                     .foregroundStyle(Color.accentColor)
                     .frame(width: 40)
 
                 VStack(alignment: .leading, spacing: 4) {
                     Text(mealType)
-                        .font(.headline)
+                        .font(AppFont.headline)
 
                     if let recipe {
                         Text(recipe.title)
-                            .font(.subheadline)
+                            .font(AppFont.subheadline)
                             .foregroundStyle(.secondary)
                     } else {
                         Text("Tap to add a meal")
-                            .font(.subheadline)
+                            .font(AppFont.subheadline)
                             .foregroundStyle(.tertiary)
                     }
                 }
@@ -114,7 +114,7 @@ struct MealSlotCard: View {
                 Spacer()
 
                 Image(systemName: "plus.circle")
-                    .font(.title2)
+                    .font(AppFont.title2)
                     .foregroundStyle(.tertiary)
             }
             .padding()
