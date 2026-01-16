@@ -55,11 +55,35 @@ async function scrapeRecipePage(url) {
         '--disable-dev-shm-usage',
         '--disable-accelerated-2d-canvas',
         '--disable-gpu',
-        '--window-size=1920x1080'
+        '--single-process',
+        '--no-zygote',
+        '--disable-extensions',
+        '--disable-background-networking',
+        '--disable-default-apps',
+        '--disable-sync',
+        '--disable-translate',
+        '--hide-scrollbars',
+        '--metrics-recording-only',
+        '--mute-audio',
+        '--no-first-run',
+        '--safebrowsing-disable-auto-update',
+        '--js-flags=--max-old-space-size=256',
+        '--window-size=1280x720'
       ]
     });
 
     const page = await browser.newPage();
+
+    // Block unnecessary resources to save memory
+    await page.setRequestInterception(true);
+    page.on('request', (req) => {
+      const resourceType = req.resourceType();
+      if (['image', 'stylesheet', 'font', 'media'].includes(resourceType)) {
+        req.abort();
+      } else {
+        req.continue();
+      }
+    });
 
     await page.setUserAgent(
       'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'

@@ -3,7 +3,7 @@ import Foundation
 final class RecipeImportService: Sendable {
     static let shared = RecipeImportService()
 
-    private let baseURL = "http://localhost:3000"
+    private let baseURL = "https://recimechallengebackend.onrender.com"
 
     private init() {}
 
