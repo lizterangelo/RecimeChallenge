@@ -1,40 +1,46 @@
 import Foundation
+import SwiftData
 
 @Observable
 final class GroceriesViewModel {
-    var items: [GroceryItem] = []
+    private var modelContext: ModelContext?
 
-    var groupedItems: [GroceryCategory: [GroceryItem]] {
+    func setContext(_ context: ModelContext) {
+        self.modelContext = context
+    }
+
+    // Computed properties now take items from @Query in the view
+    func groupedItems(_ items: [GroceryItemModel]) -> [GroceryCategory: [GroceryItemModel]] {
         Dictionary(grouping: items) { $0.category }
     }
 
-    var checkedCount: Int {
+    func checkedCount(_ items: [GroceryItemModel]) -> Int {
         items.filter { $0.isChecked }.count
     }
 
-    var uncheckedCount: Int {
+    func uncheckedCount(_ items: [GroceryItemModel]) -> Int {
         items.filter { !$0.isChecked }.count
     }
 
     func addItem(name: String, quantity: String, category: GroceryCategory) {
-        let item = GroceryItem(id: UUID(), name: name, quantity: quantity, isChecked: false, category: category)
-        items.append(item)
+        guard let context = modelContext else { return }
+        let item = GroceryItemModel(name: name, quantity: quantity, category: category)
+        context.insert(item)
     }
 
-    func toggleItem(_ item: GroceryItem) {
-        guard let index = items.firstIndex(where: { $0.id == item.id }) else { return }
-        items[index].isChecked.toggle()
+    func toggleItem(_ item: GroceryItemModel) {
+        item.isChecked.toggle()
     }
 
-    func removeItem(_ item: GroceryItem) {
-        items.removeAll { $0.id == item.id }
+    func removeItem(_ item: GroceryItemModel) {
+        modelContext?.delete(item)
     }
 
-    func clearChecked() {
-        items.removeAll { $0.isChecked }
+    func clearChecked(_ items: [GroceryItemModel]) {
+        items.filter { $0.isChecked }.forEach { modelContext?.delete($0) }
     }
 
-    func clearAll() {
-        items.removeAll()
+    func clearAll(_ items: [GroceryItemModel]) {
+        items.forEach { modelContext?.delete($0) }
     }
 }

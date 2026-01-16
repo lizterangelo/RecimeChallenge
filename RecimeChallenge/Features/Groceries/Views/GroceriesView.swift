@@ -1,33 +1,34 @@
+import SwiftData
 import SwiftUI
 
 struct GroceriesView: View {
+    // Using @Query from SwiftData for fetching grocery items
+    @Query(sort: \GroceryItemModel.name) private var items: [GroceryItemModel]
+    @Environment(\.modelContext) private var modelContext
+
     @State private var viewModel = GroceriesViewModel()
     @State private var showingAddSheet = false
 
     var body: some View {
         NavigationStack {
-            Group {
-                if viewModel.items.isEmpty {
-                    emptyState
-                } else {
-                    groceryList
-                }
-            }
-            .navigationTitle("Groceries")
-            .toolbar {
-                ToolbarItem(placement: .primaryAction) {
-                    Button {
-                        showingAddSheet = true
-                    } label: {
-                        Image(systemName: "plus")
+            ZStack(alignment: .bottomTrailing) {
+                Group {
+                    if items.isEmpty {
+                        emptyState
+                    } else {
+                        groceryList
                     }
                 }
 
-                if !viewModel.items.isEmpty {
+                floatingAddButton
+            }
+            .navigationTitle("Groceries")
+            .toolbar {
+                if !items.isEmpty {
                     ToolbarItem(placement: .topBarLeading) {
                         Menu {
-                            Button("Clear Checked", action: viewModel.clearChecked)
-                            Button("Clear All", role: .destructive, action: viewModel.clearAll)
+                            Button("Clear Checked") { viewModel.clearChecked(items) }
+                            Button("Clear All", role: .destructive) { viewModel.clearAll(items) }
                         } label: {
                             Image(systemName: "ellipsis.circle")
                         }
@@ -39,7 +40,27 @@ struct GroceriesView: View {
                     viewModel.addItem(name: name, quantity: quantity, category: category)
                 }
             }
+            .onAppear {
+                viewModel.setContext(modelContext)
+            }
         }
+    }
+
+    private var floatingAddButton: some View {
+        Button {
+            showingAddSheet = true
+        } label: {
+            Image(systemName: "plus")
+                .font(.title2)
+                .fontWeight(.semibold)
+                .foregroundStyle(.white)
+                .frame(width: 56, height: 56)
+                .background(AppColors.primary)
+                .clipShape(Circle())
+                .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 2)
+        }
+        .padding(.trailing, 20)
+        .padding(.bottom, 20)
     }
 
     private var emptyState: some View {
@@ -60,7 +81,7 @@ struct GroceriesView: View {
     private var groceryList: some View {
         List {
             ForEach(GroceryCategory.allCases) { category in
-                let categoryItems = viewModel.groupedItems[category] ?? []
+                let categoryItems = viewModel.groupedItems(items)[category] ?? []
                 if !categoryItems.isEmpty {
                     Section {
                         ForEach(categoryItems) { item in
@@ -82,4 +103,5 @@ struct GroceriesView: View {
 
 #Preview {
     GroceriesView()
+        .modelContainer(for: GroceryItemModel.self, inMemory: true)
 }

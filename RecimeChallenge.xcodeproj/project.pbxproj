@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6EF1F5762F1A564100CD42E8 /* AdvancedList in Frameworks */ = {isa = PBXBuildFile; productRef = 6EF1F5752F1A564100CD42E8 /* AdvancedList */; };
 		6EF1F5772F1A564200CD42E8 /* SSSwiftUISideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = 6EF1F5782F1A564200CD42E8 /* SSSwiftUISideMenu */; };
+		6EF1F9312F1A859E00CD42E8 /* SkeletonUI in Frameworks */ = {isa = PBXBuildFile; productRef = 6EF1F9302F1A859E00CD42E8 /* SkeletonUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6EF1F5762F1A564100CD42E8 /* AdvancedList in Frameworks */,
+				6EF1F9312F1A859E00CD42E8 /* SkeletonUI in Frameworks */,
 				6EF1F5772F1A564200CD42E8 /* SSSwiftUISideMenu in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -121,6 +123,7 @@
 			packageProductDependencies = (
 				6EF1F5752F1A564100CD42E8 /* AdvancedList */,
 				6EF1F5782F1A564200CD42E8 /* SSSwiftUISideMenu */,
+				6EF1F9302F1A859E00CD42E8 /* SkeletonUI */,
 			);
 			productName = RecimeChallenge;
 			productReference = 6EF1F16B2F1A108F00CD42E8 /* ReciMe Challenge.app */;
@@ -207,6 +210,7 @@
 			packageReferences = (
 				6EF1F5742F1A564100CD42E8 /* XCRemoteSwiftPackageReference "AdvancedList" */,
 				6EF1F5792F1A564200CD42E8 /* XCRemoteSwiftPackageReference "SSSwiftUISideMenu" */,
+				6EF1F92F2F1A859E00CD42E8 /* XCRemoteSwiftPackageReference "SkeletonUI" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 6EF1F16C2F1A108F00CD42E8 /* Products */;
@@ -619,6 +623,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		6EF1F92F2F1A859E00CD42E8 /* XCRemoteSwiftPackageReference "SkeletonUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/CSolanaM/SkeletonUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -631,6 +643,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6EF1F5792F1A564200CD42E8 /* XCRemoteSwiftPackageReference "SSSwiftUISideMenu" */;
 			productName = SSSwiftUISideMenu;
+		};
+		6EF1F9302F1A859E00CD42E8 /* SkeletonUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6EF1F92F2F1A859E00CD42E8 /* XCRemoteSwiftPackageReference "SkeletonUI" */;
+			productName = SkeletonUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -119,23 +119,29 @@ struct RecipeDetailView: View {
                 .font(AppFont.title2)
                 .fontWeight(.semibold)
 
-            GlassCard {
-                VStack(alignment: .leading, spacing: 16) {
-                    ForEach(Array(recipe.instructions.enumerated()), id: \.offset) { index, instruction in
-                        HStack(alignment: .top, spacing: 12) {
-                            Text("\(index + 1)")
-                                .font(AppFont.headline)
-                                .foregroundStyle(Color.accentColor)
-                                .frame(width: 24)
+            VStack(alignment: .leading, spacing: 16) {
+                ForEach(Array(recipe.instructions.enumerated()), id: \.offset) { index, instruction in
+                    HStack(alignment: .top, spacing: 12) {
+                        Text("\(index + 1)")
+                            .font(AppFont.subheadline)
+                            .fontWeight(.semibold)
+                            .foregroundStyle(AppColors.primary)
+                            .frame(width: 28, height: 28)
+                            .background(AppColors.primary.opacity(0.15))
+                            .clipShape(Circle())
 
-                            Text(instruction)
-                                .font(AppFont.body)
-                        }
+                        HighlightedInstructionText(
+                            text: instruction,
+                            keywords: ingredientKeywords
+                        )
                     }
                 }
-                .padding()
             }
         }
+    }
+
+    private var ingredientKeywords: [String] {
+        recipe.ingredients.map { $0.name.lowercased() }
     }
 }
 

@@ -5,19 +5,29 @@
 //  Created by LIZ on 1/16/26.
 //
 
+import SwiftData
 import SwiftUI
 import UIKit
 
 @main
 struct RecimeChallengeApp: App {
     init() {
-        // printAvailableFonts()
+        // Set navigation bar title color to app primary (orange)
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithDefaultBackground()
+        appearance.titleTextAttributes = [.foregroundColor: UIColor(named: "PrimaryColor") ?? .orange]
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor(named: "PrimaryColor") ?? .orange]
+
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().compactAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
     }
 
     var body: some Scene {
         WindowGroup {
             MainTabView()
         }
+        .modelContainer(for: [GroceryItemModel.self, MealPlanModel.self, MealItemModel.self])
     }
 
     /// Debug: Print all available fonts to find the correct PostScript name

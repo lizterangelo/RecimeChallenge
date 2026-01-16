@@ -1,5 +1,6 @@
-import SwiftUI
 import AdvancedList
+import SkeletonUI
+import SwiftUI
 
 struct CookbooksView: View {
     @State private var viewModel = CookbooksViewModel()
@@ -48,8 +49,10 @@ struct CookbooksView: View {
                     .font(AppFont.subheadline)
                     .foregroundStyle(.secondary)
 
+                Spacer()
+
                 if viewModel.currentTotalCount > 0 {
-                    Text("(\(viewModel.currentDisplayedCount)/\(viewModel.currentTotalCount))")
+                    Text("Showing \(viewModel.currentDisplayedCount) of \(viewModel.currentTotalCount) \(viewModel.contentMode == .cookbooks ? "cookbooks" : "recipes")")
                         .font(AppFont.caption)
                         .foregroundStyle(.tertiary)
                 }
@@ -62,7 +65,7 @@ struct CookbooksView: View {
     private var subtitleText: String {
         switch viewModel.contentMode {
         case .cookbooks:
-            return "Browse your delicious recipes"
+            return "Browse your cookbooks"
         case .allRecipes:
             return "Browse your recipes"
         }
@@ -72,6 +75,7 @@ struct CookbooksView: View {
         Menu {
             ForEach(ContentMode.allCases) { mode in
                 Button {
+                    viewModel.searchText = ""
                     viewModel.contentMode = mode
                 } label: {
                     HStack {
@@ -151,7 +155,7 @@ struct CookbooksView: View {
     private var cookbooksList: some View {
         AdvancedList(viewModel.cookbooks, listView: { rows in
             ScrollView {
-                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
+                LazyVGrid(columns: [GridItem(.flexible(), spacing: 16), GridItem(.flexible(), spacing: 16)], spacing: 16) {
                     rows()
                 }
                 .padding(.horizontal)
@@ -176,9 +180,15 @@ struct CookbooksView: View {
             }
             .padding(.top, 40)
         }, loadingStateView: {
-            LoadingView(message: "Loading cookbooks...")
-                .frame(maxWidth: .infinity)
-                .padding(.top, 40)
+            ScrollView {
+                LazyVGrid(columns: [GridItem(.flexible(), spacing: 16), GridItem(.flexible(), spacing: 16)], spacing: 16) {
+                    ForEach(0..<6, id: \.self) { _ in
+                        SkeletonCookbookCard()
+                    }
+                }
+                .padding(.horizontal)
+                .padding(.top, 8)
+            }
         })
         .pagination(.init(type: .thresholdItem(offset: 5), shouldLoadNextPage: {
             Task { await viewModel.loadNextPage() }
@@ -217,9 +227,15 @@ struct CookbooksView: View {
             }
             .padding(.top, 40)
         }, loadingStateView: {
-            LoadingView(message: "Loading recipes...")
-                .frame(maxWidth: .infinity)
-                .padding(.top, 40)
+            ScrollView {
+                LazyVStack(spacing: 12) {
+                    ForEach(0..<5, id: \.self) { _ in
+                        SkeletonRecipeCard()
+                    }
+                }
+                .padding(.horizontal)
+                .padding(.top, 8)
+            }
         })
         .pagination(.init(type: .thresholdItem(offset: 5), shouldLoadNextPage: {
             Task { await viewModel.loadNextPage() }

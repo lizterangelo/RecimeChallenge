@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct GroceryItemRow: View {
-    let item: GroceryItem
+    let item: GroceryItemModel
     let onToggle: () -> Void
     let onDelete: () -> Void
 
@@ -43,12 +43,12 @@ struct GroceryItemRow: View {
 #Preview {
     List {
         GroceryItemRow(
-            item: GroceryItem(id: UUID(), name: "Milk", quantity: "1 gallon", isChecked: false, category: .dairy),
+            item: GroceryItemModel(name: "Milk", quantity: "1 gallon", isChecked: false, category: .dairy),
             onToggle: {},
             onDelete: {}
         )
         GroceryItemRow(
-            item: GroceryItem(id: UUID(), name: "Eggs", quantity: "1 dozen", isChecked: true, category: .dairy),
+            item: GroceryItemModel(name: "Eggs", quantity: "1 dozen", isChecked: true, category: .dairy),
             onToggle: {},
             onDelete: {}
         )

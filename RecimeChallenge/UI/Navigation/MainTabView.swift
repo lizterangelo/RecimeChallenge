@@ -34,7 +34,7 @@ struct MainTabView: View {
                     Color.clear
                 }
             }
-            .tint(.primary)
+            .tint(AppColors.primary)
             .onChange(of: selectedTab) { oldValue, newValue in
                 if newValue == 4 {
                     showSideMenu = true

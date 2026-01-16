@@ -9,18 +9,18 @@ struct DietaryBadge: View {
             .fontWeight(.medium)
             .padding(.horizontal, 8)
             .padding(.vertical, 4)
-            .background(backgroundColor.opacity(0.15))
-            .foregroundStyle(backgroundColor)
+            .background(badgeColor)
+            .foregroundStyle(.white)
             .clipShape(Capsule())
     }
 
-    private var backgroundColor: Color {
+    private var badgeColor: Color {
         switch attribute {
-        case .vegetarian: return .green
-        case .vegan: return .green
-        case .glutenFree: return .orange
-        case .dairyFree: return .blue
-        case .nutFree: return .purple
+        case .vegetarian: return Color(red: 0.2, green: 0.5, blue: 0.3)
+        case .vegan: return Color(red: 0.15, green: 0.45, blue: 0.25)
+        case .glutenFree: return Color(red: 0.7, green: 0.4, blue: 0.1)
+        case .dairyFree: return Color(red: 0.2, green: 0.4, blue: 0.6)
+        case .nutFree: return Color(red: 0.45, green: 0.3, blue: 0.55)
         }
     }
 }

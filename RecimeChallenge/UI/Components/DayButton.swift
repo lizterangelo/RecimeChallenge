@@ -6,6 +6,10 @@ struct DayButton: View {
     let hasMeals: Bool
     let action: () -> Void
 
+    private var isToday: Bool {
+        Calendar.current.isDateInToday(date)
+    }
+
     private var dayFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = "EEE"
@@ -18,12 +22,16 @@ struct DayButton: View {
         return formatter
     }
 
+    private var dayLabel: String {
+        isToday ? "Today" : dayFormatter.string(from: date)
+    }
+
     var body: some View {
         Button(action: action) {
             VStack(spacing: 4) {
-                Text(dayFormatter.string(from: date))
+                Text(dayLabel)
                     .font(AppFont.caption)
-                    .foregroundStyle(isSelected ? .white : .secondary)
+                    .foregroundStyle(isSelected ? .white : (isToday ? AppColors.primary : .secondary))
 
                 Text(dateFormatter.string(from: date))
                     .font(AppFont.title3)
