@@ -3,7 +3,7 @@ import Foundation
 final class RecipeImportService: Sendable {
     static let shared = RecipeImportService()
 
-    private let baseURL = "https://recimechallengebackend.onrender.com"
+    private let baseURL = "http://localhost:3000"
 
     private init() {}
 
@@ -36,21 +36,24 @@ final class RecipeImportService: Sendable {
         let decoder = JSONDecoder()
         let importedRecipe = try decoder.decode(ImportedRecipeResponse.self, from: data)
 
+        let ingredients = (importedRecipe.ingredients ?? []).compactMap { ingredient -> Ingredient? in
+            guard let name = ingredient.name, !name.isEmpty else { return nil }
+            return Ingredient(
+                id: UUID(),
+                name: name,
+                quantity: ingredient.quantity ?? "",
+                unit: ingredient.unit
+            )
+        }
+
         return Recipe(
             id: UUID(),
             title: importedRecipe.title,
-            description: importedRecipe.description,
-            servings: importedRecipe.servings,
-            ingredients: importedRecipe.ingredients.map { ingredient in
-                Ingredient(
-                    id: UUID(),
-                    name: ingredient.name,
-                    quantity: ingredient.quantity,
-                    unit: ingredient.unit
-                )
-            },
-            instructions: importedRecipe.instructions,
-            dietaryAttributes: importedRecipe.dietaryAttributes.compactMap { DietaryAttribute(rawValue: $0) },
+            description: importedRecipe.description ?? "",
+            servings: importedRecipe.servings ?? 4,
+            ingredients: ingredients,
+            instructions: importedRecipe.instructions ?? [],
+            dietaryAttributes: (importedRecipe.dietaryAttributes ?? []).compactMap { DietaryAttribute(rawValue: $0) },
             imageURL: importedRecipe.imageURL,
             preparationTime: importedRecipe.preparationTime,
             cookingTime: importedRecipe.cookingTime
@@ -70,19 +73,19 @@ private struct ErrorResponse: Decodable {
 
 private struct ImportedRecipeResponse: Decodable {
     let title: String
-    let description: String
-    let servings: Int
-    let ingredients: [ImportedIngredient]
-    let instructions: [String]
-    let dietaryAttributes: [String]
+    let description: String?
+    let servings: Int?
+    let ingredients: [ImportedIngredient]?
+    let instructions: [String]?
+    let dietaryAttributes: [String]?
     let imageURL: String?
     let preparationTime: Int?
     let cookingTime: Int?
 }
 
 private struct ImportedIngredient: Decodable {
-    let name: String
-    let quantity: String
+    let name: String?
+    let quantity: String?
     let unit: String?
 }
 
