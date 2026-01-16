@@ -6,23 +6,32 @@ struct CookbooksView: View {
 
     var body: some View {
         NavigationStack {
-            Group {
-                if viewModel.isLoading && viewModel.cookbooks.isEmpty {
-                    LoadingView(message: "Loading cookbooks...")
-                } else if let error = viewModel.error, viewModel.cookbooks.isEmpty {
-                    ErrorView(message: error.localizedDescription) {
-                        Task { await viewModel.loadInitialCookbooks() }
+            ScrollView {
+                VStack(alignment: .leading, spacing: 16) {
+                    // App Title Header
+                    headerView
+
+                    // Content
+                    if viewModel.isLoading && viewModel.cookbooks.isEmpty {
+                        LoadingView(message: "Loading cookbooks...")
+                            .frame(maxWidth: .infinity)
+                            .padding(.top, 40)
+                    } else if let error = viewModel.error, viewModel.cookbooks.isEmpty {
+                        ErrorView(message: error.localizedDescription) {
+                            Task { await viewModel.loadInitialCookbooks() }
+                        }
+                        .padding(.top, 40)
+                    } else {
+                        cookbookGrid
                     }
-                } else {
-                    cookbookGrid
                 }
             }
-            .navigationTitle("Cookbooks")
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     if viewModel.totalCount > 0 {
                         Text("\(viewModel.cookbooks.count)/\(viewModel.totalCount)")
-                            .font(.caption)
+                            .font(AppFont.caption)
                             .foregroundStyle(.secondary)
                     }
                 }
@@ -41,27 +50,37 @@ struct CookbooksView: View {
         }
     }
 
-    private var cookbookGrid: some View {
-        ScrollView {
-            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
-                ForEach(viewModel.cookbooks) { cookbook in
-                    CookbookCard(cookbook: cookbook)
-                        .onTapGesture {
-                            selectedCookbook = cookbook
-                        }
-                        .onAppear {
-                            Task {
-                                await viewModel.loadMoreIfNeeded(currentItem: cookbook)
-                            }
-                        }
-                }
+    private var headerView: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            AppTitleView()
 
-                if viewModel.isLoadingMore {
-                    loadingFooter
-                }
-            }
-            .padding()
+            Text("Discover delicious recipes")
+                .font(AppFont.subheadline)
+                .foregroundStyle(.secondary)
         }
+        .padding(.horizontal)
+        .padding(.top, 8)
+    }
+
+    private var cookbookGrid: some View {
+        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
+            ForEach(viewModel.cookbooks) { cookbook in
+                CookbookCard(cookbook: cookbook)
+                    .onTapGesture {
+                        selectedCookbook = cookbook
+                    }
+                    .onAppear {
+                        Task {
+                            await viewModel.loadMoreIfNeeded(currentItem: cookbook)
+                        }
+                    }
+            }
+
+            if viewModel.isLoadingMore {
+                loadingFooter
+            }
+        }
+        .padding(.horizontal)
     }
 
     private var loadingFooter: some View {
@@ -83,21 +102,21 @@ struct CookbookCard: View {
             VStack(alignment: .leading, spacing: 8) {
                 Image(systemName: "book.closed.fill")
                     .font(.largeTitle)
-                    .foregroundStyle(Color.accentColor)
+                    .foregroundStyle(AppColors.primary)
                     .frame(maxWidth: .infinity, alignment: .center)
                     .padding(.vertical, 8)
 
                 Text(cookbook.name)
-                    .font(.headline)
+                    .font(AppFont.headline)
                     .lineLimit(1)
 
                 Text(cookbook.description)
-                    .font(.caption)
+                    .font(AppFont.caption)
                     .foregroundStyle(.secondary)
                     .lineLimit(2)
 
                 Text("\(cookbook.recipeCount) recipes")
-                    .font(.caption2)
+                    .font(AppFont.caption2)
                     .foregroundStyle(.tertiary)
             }
             .padding()
