@@ -8,7 +8,7 @@ A native iOS recipe app with **liquid glass UI** built with Swift and SwiftUI, f
 
 **Requirements:**
 - Xcode 16.0+
-- iOS 18.0+ deployment target
+- iOS 26.0+ deployment target
 - macOS Sequoia or later
 
 **Getting Started:**
