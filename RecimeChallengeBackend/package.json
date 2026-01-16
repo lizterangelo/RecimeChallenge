@@ -1,19 +1,17 @@
 {
   "name": "recime-challenge-backend",
   "version": "1.0.0",
-  "description": "Backend for RecimeChallenge app - Recipe scraping with Puppeteer and Gemini AI",
+  "description": "Backend for RecimeChallenge app - Recipe scraping with Firecrawl and Gemini AI",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js",
-    "build": "PUPPETEER_CACHE_DIR=$PWD/chrome-cache npx puppeteer browsers install chrome"
+    "dev": "nodemon index.js"
   },
   "dependencies": {
     "@google/generative-ai": "^0.21.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
-    "express": "^4.21.0",
-    "puppeteer": "^23.4.0"
+    "express": "^4.21.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.4"
