@@ -1,4 +1,5 @@
 import SwiftUI
+import WebKit
 
 struct ImportRecipeView: View {
     @State private var viewModel = ImportRecipeViewModel()

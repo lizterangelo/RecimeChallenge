@@ -20,9 +20,12 @@ final class ImportRecipeViewModel {
         errorMessage = nil
 
         do {
+            print("[ImportRecipe] Importing from URL: \(url)")
             let recipe = try await RecipeImportService.shared.importRecipe(from: url)
+            print("[ImportRecipe] Success: \(recipe.title)")
             importedRecipe = recipe
         } catch {
+            print("[ImportRecipe] Error: \(error)")
             errorMessage = error.localizedDescription
         }
 
