@@ -40,7 +40,7 @@ struct MealSlotCard: View {
                             .foregroundStyle(.secondary)
                             .lineLimit(1)
                     } else {
-                        Text("Tap to add a meal")
+                        Text("Tap to add a recipe")
                             .font(AppFont.subheadline)
                             .foregroundStyle(.tertiary)
                     }

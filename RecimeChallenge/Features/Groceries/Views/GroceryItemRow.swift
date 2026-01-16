@@ -3,7 +3,6 @@ import SwiftUI
 struct GroceryItemRow: View {
     let item: GroceryItemModel
     let onToggle: () -> Void
-    let onDelete: () -> Void
 
     var body: some View {
         HStack(spacing: 12) {
@@ -28,13 +27,6 @@ struct GroceryItemRow: View {
             }
 
             Spacer()
-
-            Button(action: onDelete) {
-                Image(systemName: "trash")
-                    .font(AppFont.caption)
-                    .foregroundStyle(.red.opacity(0.7))
-            }
-            .buttonStyle(.plain)
         }
         .padding(.vertical, 4)
     }
@@ -44,13 +36,11 @@ struct GroceryItemRow: View {
     List {
         GroceryItemRow(
             item: GroceryItemModel(name: "Milk", quantity: "1 gallon", isChecked: false, category: .dairy),
-            onToggle: {},
-            onDelete: {}
+            onToggle: {}
         )
         GroceryItemRow(
             item: GroceryItemModel(name: "Eggs", quantity: "1 dozen", isChecked: true, category: .dairy),
-            onToggle: {},
-            onDelete: {}
+            onToggle: {}
         )
     }
 }

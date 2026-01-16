@@ -4,12 +4,13 @@ struct SideMenuItem: Identifiable {
     let id = UUID()
     let title: String
     let icon: String
+    let url: URL
 }
 
 struct SideMenuView: View {
+    @Environment(\.openURL) private var openURL
     @Binding var isOpen: Bool
     let menuItems: [SideMenuItem]
-    var onItemTap: ((SideMenuItem) -> Void)?
 
     var body: some View {
         ZStack {
@@ -25,7 +26,7 @@ struct SideMenuView: View {
                     VStack(alignment: .leading, spacing: 0) {
                         ForEach(menuItems) { item in
                             Button {
-                                onItemTap?(item)
+                                openURL(item.url)
                                 isOpen = false
                             } label: {
                                 HStack(spacing: 16) {
@@ -36,13 +37,14 @@ struct SideMenuView: View {
                                 }
                                 .padding()
                             }
-                            .foregroundStyle(.primary)
+                            .foregroundStyle(.white)
                             Divider()
+                                .background(.white.opacity(0.3))
                         }
                         Spacer()
                     }
                     .frame(width: 280)
-                    .background(.regularMaterial)
+                    .background(AppColors.primary)
                     .transition(.move(edge: .trailing))
                 }
             }
@@ -55,9 +57,10 @@ struct SideMenuView: View {
     SideMenuView(
         isOpen: .constant(true),
         menuItems: [
-            SideMenuItem(title: "Profile", icon: "person.circle"),
-            SideMenuItem(title: "Settings", icon: "gearshape"),
-            SideMenuItem(title: "About", icon: "info.circle")
+            SideMenuItem(title: "About", icon: "info.circle", url: URL(string: "https://recime.app/")!),
+            SideMenuItem(title: "Help & Support", icon: "questionmark.circle", url: URL(string: "https://recime.app/help/en")!),
+            SideMenuItem(title: "Privacy Policy", icon: "hand.raised", url: URL(string: "https://recime.app/privacy-policy")!),
+            SideMenuItem(title: "Terms of Service", icon: "doc.text", url: URL(string: "https://recime.app/terms-and-conditions")!)
         ]
     )
 }

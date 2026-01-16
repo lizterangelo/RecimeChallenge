@@ -6,9 +6,10 @@ struct MainTabView: View {
     @State private var showSideMenu = false
 
     private let menuItems = [
-        SideMenuItem(title: "Profile", icon: "person.circle"),
-        SideMenuItem(title: "Settings", icon: "gearshape"),
-        SideMenuItem(title: "About", icon: "info.circle")
+        SideMenuItem(title: "About", icon: "info.circle", url: URL(string: "https://recime.app/")!),
+        SideMenuItem(title: "Help & Support", icon: "questionmark.circle", url: URL(string: "https://recime.app/help/en")!),
+        SideMenuItem(title: "Privacy Policy", icon: "hand.raised", url: URL(string: "https://recime.app/privacy-policy")!),
+        SideMenuItem(title: "Terms of Service", icon: "doc.text", url: URL(string: "https://recime.app/terms-and-conditions")!)
     ]
 
     var body: some View {

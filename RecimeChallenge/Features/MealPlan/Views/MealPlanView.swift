@@ -13,12 +13,12 @@ struct MealPlanView: View {
     var body: some View {
         NavigationStack {
             ZStack(alignment: .bottomTrailing) {
-                ScrollView {
-                    VStack(spacing: 20) {
-                        weekSelector
-                        mealCards
-                    }
-                    .padding()
+                VStack(spacing: 0) {
+                    weekSelector
+                        .padding(.horizontal)
+                        .padding(.vertical, 8)
+
+                    mealCardsList
                 }
 
                 floatingAddButton
@@ -60,7 +60,7 @@ struct MealPlanView: View {
         }
     }
 
-    private var mealCards: some View {
+    private var mealCardsList: some View {
         List {
             mealSlotSection(slot: .breakfast)
             mealSlotSection(slot: .lunch)
@@ -88,7 +88,7 @@ struct MealPlanView: View {
             )
             .listRowSeparator(.hidden)
             .listRowBackground(Color.clear)
-            .listRowInsets(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 0))
+            .listRowInsets(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))
         } else {
             ForEach(items) { item in
                 MealSlotCard(
@@ -102,7 +102,7 @@ struct MealPlanView: View {
                 )
                 .listRowSeparator(.hidden)
                 .listRowBackground(Color.clear)
-                .listRowInsets(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 0))
+                .listRowInsets(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))
                 .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                     Button(role: .destructive) {
                         viewModel.deleteMealItem(item)

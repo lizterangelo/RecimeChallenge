@@ -87,9 +87,15 @@ struct GroceriesView: View {
                         ForEach(categoryItems) { item in
                             GroceryItemRow(
                                 item: item,
-                                onToggle: { viewModel.toggleItem(item) },
-                                onDelete: { viewModel.removeItem(item) }
+                                onToggle: { viewModel.toggleItem(item) }
                             )
+                            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                Button(role: .destructive) {
+                                    viewModel.removeItem(item)
+                                } label: {
+                                    Label("Delete", systemImage: "trash")
+                                }
+                            }
                         }
                     } header: {
                         Label(category.displayName, systemImage: category.iconName)
