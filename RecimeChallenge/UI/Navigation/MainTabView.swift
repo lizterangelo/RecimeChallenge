@@ -23,8 +23,8 @@ struct MainTabView: View {
                     MealPlanView()
                 }
 
-                Tab("Add", systemImage: "plus.circle.fill", value: 2) {
-                    AddRecipeView()
+                Tab("Import", systemImage: "square.and.arrow.down", value: 2) {
+                    ImportRecipeView()
                 }
 
                 Tab("Groceries", systemImage: "cart", value: 3) {
