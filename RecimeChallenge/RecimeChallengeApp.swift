@@ -11,7 +11,7 @@ import UIKit
 @main
 struct RecimeChallengeApp: App {
     init() {
-        printAvailableFonts()
+        // printAvailableFonts()
     }
 
     var body: some Scene {
@@ -21,17 +21,17 @@ struct RecimeChallengeApp: App {
     }
 
     /// Debug: Print all available fonts to find the correct PostScript name
-    private func printAvailableFonts() {
-        #if DEBUG
-        for family in UIFont.familyNames.sorted() {
-            let fontNames = UIFont.fontNames(forFamilyName: family)
-            if !fontNames.isEmpty {
-                print("Font Family: \(family)")
-                for name in fontNames {
-                    print("  - \(name)")
-                }
-            }
-        }
-        #endif
-    }
+    // private func printAvailableFonts() {
+    //     #if DEBUG
+    //     for family in UIFont.familyNames.sorted() {
+    //         let fontNames = UIFont.fontNames(forFamilyName: family)
+    //         if !fontNames.isEmpty {
+    //             print("Font Family: \(family)")
+    //             for name in fontNames {
+    //                 print("  - \(name)")
+    //             }
+    //         }
+    //     }
+    //     #endif
+    // }
 }
