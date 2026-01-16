@@ -1,11 +1,32 @@
 const puppeteer = require('puppeteer');
+const fs = require('fs');
+const path = require('path');
+
+function findChrome() {
+  // Check Render's cache location
+  const renderCachePath = '/opt/render/.cache/puppeteer/chrome';
+  if (fs.existsSync(renderCachePath)) {
+    const versions = fs.readdirSync(renderCachePath);
+    if (versions.length > 0) {
+      const chromePath = path.join(renderCachePath, versions[0], 'chrome-linux64', 'chrome');
+      if (fs.existsSync(chromePath)) {
+        console.log('Found Chrome at:', chromePath);
+        return chromePath;
+      }
+    }
+  }
+  // Let puppeteer find it automatically
+  return undefined;
+}
 
 async function scrapeRecipePage(url) {
   let browser;
 
   try {
+    const executablePath = findChrome();
     browser = await puppeteer.launch({
       headless: 'new',
+      executablePath,
       args: [
         '--no-sandbox',
         '--disable-setuid-sandbox',
