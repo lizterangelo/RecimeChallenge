@@ -11,7 +11,7 @@ import UIKit
 
 @main
 struct RecimeChallengeApp: App {
-    @State private var showSplash = true
+    @State private var coordinator = AppCoordinator()
 
     init() {
         // Initialize Mixpanel analytics
@@ -30,19 +30,7 @@ struct RecimeChallengeApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ZStack {
-                MainTabView()
-
-                if showSplash {
-                    SplashScreenView()
-                        .zIndex(1)
-                        .onAppear {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 2.3) {
-                                showSplash = false
-                            }
-                        }
-                }
-            }
+            AppCoordinatorView(coordinator: coordinator)
         }
         .modelContainer(for: [GroceryItemModel.self, MealPlanModel.self, MealItemModel.self])
     }
