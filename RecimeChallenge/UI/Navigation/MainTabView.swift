@@ -41,6 +41,11 @@ struct MainTabView: View {
                     selectedTab = previousTab
                 } else {
                     previousTab = newValue
+                    // Track tab selection
+                    let tabNames = ["Cookbooks", "Meal Plan", "Import", "Groceries"]
+                    if newValue < tabNames.count {
+                        AnalyticsService.shared.track(.tabSelected, properties: ["tab_name": tabNames[newValue]])
+                    }
                 }
             }
 

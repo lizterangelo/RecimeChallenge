@@ -165,6 +165,10 @@ struct CookbooksView: View {
         }, content: { cookbook in
             CookbookCard(cookbook: cookbook)
                 .onTapGesture {
+                    AnalyticsService.shared.track(.cookbookOpened, properties: [
+                        "cookbook_id": cookbook.id.uuidString,
+                        "cookbook_name": cookbook.name
+                    ])
                     selectedCookbook = cookbook
                 }
         }, listState: viewModel.listState, emptyStateView: {
@@ -212,6 +216,10 @@ struct CookbooksView: View {
         }, content: { recipe in
             RecipeCard(recipe: recipe)
                 .onTapGesture {
+                    AnalyticsService.shared.track(.recipeOpened, properties: [
+                        "recipe_id": recipe.id.uuidString,
+                        "recipe_title": recipe.title
+                    ])
                     selectedRecipe = recipe
                 }
         }, listState: viewModel.listState, emptyStateView: {

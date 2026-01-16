@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6ECF31882F1AAA3000DE4A53 /* Mixpanel in Frameworks */ = {isa = PBXBuildFile; productRef = 6ECF31872F1AAA3000DE4A53 /* Mixpanel */; };
 		6EF1F5762F1A564100CD42E8 /* AdvancedList in Frameworks */ = {isa = PBXBuildFile; productRef = 6EF1F5752F1A564100CD42E8 /* AdvancedList */; };
 		6EF1F5772F1A564200CD42E8 /* SSSwiftUISideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = 6EF1F5782F1A564200CD42E8 /* SSSwiftUISideMenu */; };
 		6EF1F9312F1A859E00CD42E8 /* SkeletonUI in Frameworks */ = {isa = PBXBuildFile; productRef = 6EF1F9302F1A859E00CD42E8 /* SkeletonUI */; };
@@ -60,6 +61,7 @@
 			files = (
 				6EF1F5762F1A564100CD42E8 /* AdvancedList in Frameworks */,
 				6EF1F9312F1A859E00CD42E8 /* SkeletonUI in Frameworks */,
+				6ECF31882F1AAA3000DE4A53 /* Mixpanel in Frameworks */,
 				6EF1F5772F1A564200CD42E8 /* SSSwiftUISideMenu in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -124,6 +126,7 @@
 				6EF1F5752F1A564100CD42E8 /* AdvancedList */,
 				6EF1F5782F1A564200CD42E8 /* SSSwiftUISideMenu */,
 				6EF1F9302F1A859E00CD42E8 /* SkeletonUI */,
+				6ECF31872F1AAA3000DE4A53 /* Mixpanel */,
 			);
 			productName = RecimeChallenge;
 			productReference = 6EF1F16B2F1A108F00CD42E8 /* ReciMe Challenge.app */;
@@ -211,6 +214,7 @@
 				6EF1F5742F1A564100CD42E8 /* XCRemoteSwiftPackageReference "AdvancedList" */,
 				6EF1F5792F1A564200CD42E8 /* XCRemoteSwiftPackageReference "SSSwiftUISideMenu" */,
 				6EF1F92F2F1A859E00CD42E8 /* XCRemoteSwiftPackageReference "SkeletonUI" */,
+				6ECF31862F1AAA3000DE4A53 /* XCRemoteSwiftPackageReference "mixpanel-swift" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 6EF1F16C2F1A108F00CD42E8 /* Products */;
@@ -607,6 +611,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		6ECF31862F1AAA3000DE4A53 /* XCRemoteSwiftPackageReference "mixpanel-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mixpanel/mixpanel-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		6EF1F5742F1A564100CD42E8 /* XCRemoteSwiftPackageReference "AdvancedList" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/chris-swift-dev/AdvancedList";
@@ -634,6 +646,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		6ECF31872F1AAA3000DE4A53 /* Mixpanel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6ECF31862F1AAA3000DE4A53 /* XCRemoteSwiftPackageReference "mixpanel-swift" */;
+			productName = Mixpanel;
+		};
 		6EF1F5752F1A564100CD42E8 /* AdvancedList */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 6EF1F5742F1A564100CD42E8 /* XCRemoteSwiftPackageReference "AdvancedList" */;

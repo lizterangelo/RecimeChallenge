@@ -14,5 +14,10 @@
 		<string>Poppins-SemiBold.ttf</string>
 		<string>Poppins-Bold.ttf</string>
 	</array>
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UIColorName</key>
+		<string>PrimaryColor</string>
+	</dict>
 </dict>
 </plist>

@@ -26,10 +26,18 @@ final class GroceriesViewModel {
         guard let context = modelContext else { return }
         let item = GroceryItemModel(name: name, quantity: quantity, category: category)
         context.insert(item)
+
+        AnalyticsService.shared.track(.groceryItemAdded, properties: [
+            "category": category.rawValue
+        ])
     }
 
     func toggleItem(_ item: GroceryItemModel) {
         item.isChecked.toggle()
+
+        AnalyticsService.shared.track(.groceryItemToggled, properties: [
+            "is_checked": item.isChecked
+        ])
     }
 
     func removeItem(_ item: GroceryItemModel) {
@@ -37,10 +45,22 @@ final class GroceriesViewModel {
     }
 
     func clearChecked(_ items: [GroceryItemModel]) {
-        items.filter { $0.isChecked }.forEach { modelContext?.delete($0) }
+        let checkedItems = items.filter { $0.isChecked }
+        checkedItems.forEach { modelContext?.delete($0) }
+
+        AnalyticsService.shared.track(.groceryListCleared, properties: [
+            "clear_type": "checked",
+            "items_cleared": checkedItems.count
+        ])
     }
 
     func clearAll(_ items: [GroceryItemModel]) {
+        let count = items.count
         items.forEach { modelContext?.delete($0) }
+
+        AnalyticsService.shared.track(.groceryListCleared, properties: [
+            "clear_type": "all",
+            "items_cleared": count
+        ])
     }
 }

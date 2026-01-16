@@ -63,6 +63,14 @@ extension AppFont {
     /// App title subtitle - "Challenge" (Recoleta Bold 11pt)
     static let appTitleSub = Recoleta.bold(11)
 
+    // MARK: - Splash Screen Title (Recoleta)
+
+    /// Splash screen main text - "ReciMe" (Recoleta Bold 32pt)
+    static let splashTitleMain = Recoleta.bold(32)
+
+    /// Splash screen subtitle - "Challenge" (Recoleta Bold 16pt)
+    static let splashTitleSub = Recoleta.bold(16)
+
     // MARK: - Headings (Poppins)
 
     /// Large title - 32pt Bold

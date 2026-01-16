@@ -98,6 +98,14 @@ final class CookbooksViewModel {
     }
 
     private func performSearch() async {
+        // Track search if there's a query
+        if !searchText.isEmpty {
+            AnalyticsService.shared.track(.searchPerformed, properties: [
+                "query": searchText,
+                "content_mode": contentMode.rawValue
+            ])
+        }
+
         switch contentMode {
         case .cookbooks:
             cookbooksCurrentPage = 0

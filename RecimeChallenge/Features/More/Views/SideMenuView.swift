@@ -26,6 +26,9 @@ struct SideMenuView: View {
                     VStack(alignment: .leading, spacing: 0) {
                         ForEach(menuItems) { item in
                             Button {
+                                AnalyticsService.shared.track(.menuLinkTapped, properties: [
+                                    "link_name": item.title
+                                ])
                                 openURL(item.url)
                                 isOpen = false
                             } label: {

@@ -11,7 +11,12 @@ import UIKit
 
 @main
 struct RecimeChallengeApp: App {
+    @State private var showSplash = true
+
     init() {
+        // Initialize Mixpanel analytics
+        AnalyticsService.shared.initialize(token: "dc849a9638f13525b046ffcae20ba10b")
+
         // Set navigation bar title color to app primary (orange)
         let appearance = UINavigationBarAppearance()
         appearance.configureWithDefaultBackground()
@@ -25,7 +30,19 @@ struct RecimeChallengeApp: App {
 
     var body: some Scene {
         WindowGroup {
-            MainTabView()
+            ZStack {
+                MainTabView()
+
+                if showSplash {
+                    SplashScreenView()
+                        .zIndex(1)
+                        .onAppear {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 2.3) {
+                                showSplash = false
+                            }
+                        }
+                }
+            }
         }
         .modelContainer(for: [GroceryItemModel.self, MealPlanModel.self, MealItemModel.self])
     }
