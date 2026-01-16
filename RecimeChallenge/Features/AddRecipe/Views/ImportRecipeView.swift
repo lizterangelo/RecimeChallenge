@@ -73,6 +73,13 @@ struct ImportRecipeView: View {
         }
     }
 
+    private var canImport: Bool {
+        guard let url = viewModel.currentURL?.lowercased() else { return false }
+        if url.contains("recime.app") { return false }
+        if url.contains("google.com") { return false }
+        return true
+    }
+
     private var importButton: some View {
         Button {
             Task {
@@ -92,11 +99,11 @@ struct ImportRecipeView: View {
             .foregroundStyle(.white)
             .frame(maxWidth: .infinity)
             .padding(.vertical, 16)
-            .background(AppColors.primary)
+            .background(canImport ? AppColors.primary : AppColors.primary.opacity(0.5))
             .clipShape(RoundedRectangle(cornerRadius: 16))
             .shadow(color: .black.opacity(0.15), radius: 8, y: 4)
         }
-        .disabled(viewModel.isLoading || viewModel.currentURL == nil)
+        .disabled(viewModel.isLoading || !canImport)
         .padding(.horizontal)
         .padding(.bottom, 16)
     }
