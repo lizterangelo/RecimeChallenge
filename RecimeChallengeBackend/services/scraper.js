@@ -3,19 +3,39 @@ const fs = require('fs');
 const path = require('path');
 
 function findChrome() {
-  // Check Render's cache location
-  const renderCachePath = '/opt/render/.cache/puppeteer/chrome';
-  if (fs.existsSync(renderCachePath)) {
-    const versions = fs.readdirSync(renderCachePath);
-    if (versions.length > 0) {
-      const chromePath = path.join(renderCachePath, versions[0], 'chrome-linux64', 'chrome');
-      if (fs.existsSync(chromePath)) {
-        console.log('Found Chrome at:', chromePath);
-        return chromePath;
+  // Possible Chrome cache locations
+  const cachePaths = [
+    // Project's node_modules cache (set by .puppeteerrc.cjs)
+    path.join(__dirname, '..', 'node_modules', '.cache', 'puppeteer', 'chrome'),
+    // Render's default cache location
+    '/opt/render/.cache/puppeteer/chrome',
+  ];
+
+  for (const cachePath of cachePaths) {
+    if (fs.existsSync(cachePath)) {
+      try {
+        const versions = fs.readdirSync(cachePath);
+        if (versions.length > 0) {
+          // Try linux path first, then mac path
+          const linuxPath = path.join(cachePath, versions[0], 'chrome-linux64', 'chrome');
+          const macPath = path.join(cachePath, versions[0], 'chrome-mac-x64', 'Google Chrome for Testing.app', 'Contents', 'MacOS', 'Google Chrome for Testing');
+
+          if (fs.existsSync(linuxPath)) {
+            console.log('Found Chrome at:', linuxPath);
+            return linuxPath;
+          }
+          if (fs.existsSync(macPath)) {
+            console.log('Found Chrome at:', macPath);
+            return macPath;
+          }
+        }
+      } catch (e) {
+        console.log('Error checking cache path:', cachePath, e.message);
       }
     }
   }
-  // Let puppeteer find it automatically
+
+  console.log('Chrome not found in cache, letting puppeteer find it automatically');
   return undefined;
 }
 
