@@ -108,6 +108,35 @@ private final class PreviewMockAPIClient: APIClientProtocol, @unchecked Sendable
         )
     }
 
+    func searchCookbooks(query: String, page: Int, pageSize: Int) async throws -> PaginatedResponse<Cookbook> {
+        let filtered = PreviewData.sampleCookbooks.filter {
+            $0.name.lowercased().contains(query.lowercased()) ||
+            $0.description.lowercased().contains(query.lowercased())
+        }
+        return PaginatedResponse(
+            items: filtered,
+            totalCount: filtered.count,
+            page: page,
+            pageSize: pageSize
+        )
+    }
+
+    func fetchRecipes(page: Int, pageSize: Int, searchQuery: String?) async throws -> PaginatedResponse<Recipe> {
+        var recipes = PreviewData.sampleRecipes
+        if let query = searchQuery?.lowercased(), !query.isEmpty {
+            recipes = recipes.filter {
+                $0.title.lowercased().contains(query) ||
+                $0.description.lowercased().contains(query)
+            }
+        }
+        return PaginatedResponse(
+            items: recipes,
+            totalCount: recipes.count,
+            page: page,
+            pageSize: pageSize
+        )
+    }
+
     func fetchRecipes() async throws -> [Recipe] {
         PreviewData.sampleRecipes
     }
