@@ -4,13 +4,34 @@ final class MockAPIClient: APIClientProtocol, @unchecked Sendable {
     private let simulatedDelay: Duration
     private var cachedCookbooks: [Cookbook]?
 
-    init(simulatedDelay: Duration = .milliseconds(500)) {
+    init(simulatedDelay: Duration = .milliseconds(300)) {
         self.simulatedDelay = simulatedDelay
     }
 
-    func fetchCookbooks() async throws -> [Cookbook] {
+    func fetchCookbooks(page: Int, pageSize: Int) async throws -> PaginatedResponse<Cookbook> {
         try await Task.sleep(for: simulatedDelay)
-        return try loadCookbooks()
+
+        let allCookbooks = try loadCookbooks()
+        let startIndex = (page - 1) * pageSize
+        let endIndex = min(startIndex + pageSize, allCookbooks.count)
+
+        guard startIndex < allCookbooks.count else {
+            return PaginatedResponse(
+                items: [],
+                totalCount: allCookbooks.count,
+                page: page,
+                pageSize: pageSize
+            )
+        }
+
+        let items = Array(allCookbooks[startIndex..<endIndex])
+
+        return PaginatedResponse(
+            items: items,
+            totalCount: allCookbooks.count,
+            page: page,
+            pageSize: pageSize
+        )
     }
 
     func fetchRecipes() async throws -> [Recipe] {

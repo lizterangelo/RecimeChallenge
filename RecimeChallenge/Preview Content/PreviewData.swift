@@ -99,8 +99,13 @@ enum PreviewData {
 }
 
 private final class PreviewMockAPIClient: APIClientProtocol, @unchecked Sendable {
-    func fetchCookbooks() async throws -> [Cookbook] {
-        PreviewData.sampleCookbooks
+    func fetchCookbooks(page: Int, pageSize: Int) async throws -> PaginatedResponse<Cookbook> {
+        PaginatedResponse(
+            items: PreviewData.sampleCookbooks,
+            totalCount: PreviewData.sampleCookbooks.count,
+            page: page,
+            pageSize: pageSize
+        )
     }
 
     func fetchRecipes() async throws -> [Recipe] {

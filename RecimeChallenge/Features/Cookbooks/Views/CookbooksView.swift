@@ -11,19 +11,28 @@ struct CookbooksView: View {
                     LoadingView(message: "Loading cookbooks...")
                 } else if let error = viewModel.error, viewModel.cookbooks.isEmpty {
                     ErrorView(message: error.localizedDescription) {
-                        Task { await viewModel.loadCookbooks() }
+                        Task { await viewModel.loadInitialCookbooks() }
                     }
                 } else {
                     cookbookGrid
                 }
             }
             .navigationTitle("Cookbooks")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    if viewModel.totalCount > 0 {
+                        Text("\(viewModel.cookbooks.count)/\(viewModel.totalCount)")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+                }
+            }
             .navigationDestination(item: $selectedCookbook) { cookbook in
                 CookbookDetailView(cookbook: cookbook)
             }
             .task {
                 if viewModel.cookbooks.isEmpty {
-                    await viewModel.loadCookbooks()
+                    await viewModel.loadInitialCookbooks()
                 }
             }
             .refreshable {
@@ -40,10 +49,29 @@ struct CookbooksView: View {
                         .onTapGesture {
                             selectedCookbook = cookbook
                         }
+                        .onAppear {
+                            Task {
+                                await viewModel.loadMoreIfNeeded(currentItem: cookbook)
+                            }
+                        }
+                }
+
+                if viewModel.isLoadingMore {
+                    loadingFooter
                 }
             }
             .padding()
         }
+    }
+
+    private var loadingFooter: some View {
+        HStack {
+            Spacer()
+            ProgressView()
+                .padding()
+            Spacer()
+        }
+        .gridCellColumns(2)
     }
 }
 
