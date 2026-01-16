@@ -6,13 +6,13 @@ struct AppTitleView: View {
     var showIcon: Bool = true
 
     var body: some View {
-        HStack(spacing: 8) {
+        HStack(spacing: 4) {
             if showIcon {
                 Image("AppLogo")
                     .renderingMode(.template)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 32, height: 32)
+                    .frame(width: 44, height: 44)
                     .foregroundStyle(AppColors.primary)
             }
             Text("ReciMe Challenge")

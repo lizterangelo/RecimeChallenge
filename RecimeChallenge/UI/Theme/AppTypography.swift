@@ -10,19 +10,19 @@ enum AppFont {
     /// Recoleta font family - use only for app title
     enum Recoleta {
         static func regular(_ size: CGFloat) -> Font {
-            .custom("Recoleta-Regular", size: size)
+            .custom("FONTSPRINGDEMO-RecoletaRegular", size: size)
         }
 
         static func medium(_ size: CGFloat) -> Font {
-            .custom("Recoleta-Medium", size: size)
+            .custom("FONTSPRINGDEMO-RecoletaMedium", size: size)
         }
 
         static func semiBold(_ size: CGFloat) -> Font {
-            .custom("Recoleta-SemiBold", size: size)
+            .custom("FONTSPRINGDEMO-RecoletaSemiBold", size: size)
         }
 
         static func bold(_ size: CGFloat) -> Font {
-            .custom("Recoleta-Bold", size: size)
+            .custom("FONTSPRINGDEMO-RecoletaBold", size: size)
         }
     }
 
