@@ -64,18 +64,58 @@ struct GroceriesView: View {
     }
 
     private var emptyState: some View {
-        ContentUnavailableView {
-            Label("No Groceries", systemImage: "cart")
-        } description: {
-            Text("Add items to your shopping list")
-        } actions: {
+        VStack(spacing: 24) {
+            Spacer()
+
+            // Icon with layered background circles
+            ZStack {
+                Circle()
+                    .fill(AppColors.primary.opacity(0.1))
+                    .frame(width: 120, height: 120)
+
+                Circle()
+                    .fill(AppColors.primary.opacity(0.15))
+                    .frame(width: 90, height: 90)
+
+                Image(systemName: "cart")
+                    .font(.system(size: 40, weight: .medium))
+                    .foregroundStyle(AppColors.primary)
+            }
+
+            // Text content
+            VStack(spacing: 8) {
+                Text("Your grocery list is empty")
+                    .font(.title3)
+                    .fontWeight(.semibold)
+                    .foregroundStyle(AppColors.label)
+
+                Text("Add items to keep track of\nwhat you need to buy")
+                    .font(.subheadline)
+                    .foregroundStyle(AppColors.secondaryLabel)
+                    .multilineTextAlignment(.center)
+            }
+
+            // Add button
             Button {
                 showingAddSheet = true
             } label: {
-                Text("Add Item")
+                HStack(spacing: 8) {
+                    Image(systemName: "plus")
+                        .fontWeight(.semibold)
+                    Text("Add First Item")
+                        .fontWeight(.semibold)
+                }
+                .foregroundStyle(.white)
+                .padding(.horizontal, 24)
+                .padding(.vertical, 14)
+                .background(AppColors.primary)
+                .clipShape(Capsule())
             }
-            .buttonStyle(.glassButton)
+
+            Spacer()
         }
+        .frame(maxWidth: .infinity)
+        .padding(.horizontal, 32)
     }
 
     private var groceryList: some View {

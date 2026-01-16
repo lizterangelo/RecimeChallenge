@@ -57,7 +57,6 @@ struct SideMenuView: View {
     SideMenuView(
         isOpen: .constant(true),
         menuItems: [
-            SideMenuItem(title: "About", icon: "info.circle", url: URL(string: "https://recime.app/")!),
             SideMenuItem(title: "Help & Support", icon: "questionmark.circle", url: URL(string: "https://recime.app/help/en")!),
             SideMenuItem(title: "Privacy Policy", icon: "hand.raised", url: URL(string: "https://recime.app/privacy-policy")!),
             SideMenuItem(title: "Terms of Service", icon: "doc.text", url: URL(string: "https://recime.app/terms-and-conditions")!)
