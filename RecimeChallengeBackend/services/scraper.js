@@ -5,7 +5,9 @@ const path = require('path');
 function findChrome() {
   // Possible Chrome cache locations
   const cachePaths = [
-    // Project's node_modules cache (set by .puppeteerrc.cjs)
+    // Explicit chrome-cache directory (set by build script)
+    path.join(__dirname, '..', 'chrome-cache', 'chrome'),
+    // Project's node_modules cache
     path.join(__dirname, '..', 'node_modules', '.cache', 'puppeteer', 'chrome'),
     // Render's default cache location
     '/opt/render/.cache/puppeteer/chrome',
