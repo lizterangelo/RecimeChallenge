@@ -9,7 +9,7 @@ struct RecipeCard: View {
                 if let imageName = recipe.imageURL {
                     Image(imageName)
                         .resizable()
-                        .aspectRatio(contentMode: .fill)
+                        .aspectRatio(contentMode: .fit)
                         .frame(height: 120)
                         .clipped()
                 }

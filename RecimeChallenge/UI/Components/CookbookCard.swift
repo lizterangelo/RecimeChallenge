@@ -49,20 +49,20 @@ struct CookbookCard: View {
             HStack(spacing: 2) {
                 Image(recipeImages[0])
                     .resizable()
-                    .aspectRatio(contentMode: .fill)
+                    .aspectRatio(contentMode: .fit)
                     .frame(width: leftWidth, height: 100)
                     .clipped()
 
                 VStack(spacing: 2) {
                     Image(recipeImages[1])
                         .resizable()
-                        .aspectRatio(contentMode: .fill)
+                        .aspectRatio(contentMode: .fit)
                         .frame(width: rightWidth, height: 49)
                         .clipped()
 
                     Image(recipeImages[2])
                         .resizable()
-                        .aspectRatio(contentMode: .fill)
+                        .aspectRatio(contentMode: .fit)
                         .frame(width: rightWidth, height: 49)
                         .clipped()
                 }
