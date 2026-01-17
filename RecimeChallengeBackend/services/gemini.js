@@ -39,10 +39,12 @@ IMAGE URL: ${scrapedData.mainImage || 'None'}
 PAGE CONTENT:
 ${scrapedData.bodyText}
 
-Extract the recipe and return ONLY a valid JSON object matching this schema:
+Extract ONLY THE FIRST/MAIN recipe and return a single JSON object (NOT an array) matching this schema:
 ${RECIPE_SCHEMA}
 
 Important:
+- Return a single JSON object, never an array
+- If the page has multiple recipes, only extract the primary/first one
 - Parse ingredient amounts carefully (e.g., "2 cups flour" -> quantity: "2", unit: "cup", name: "flour")
 - Split instructions into logical steps
 - Identify dietary attributes based on ingredients (e.g., no meat = vegetarian, no animal products = vegan)
