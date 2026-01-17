@@ -68,7 +68,16 @@ Important:
   jsonString = jsonString.trim();
 
   try {
-    const recipe = JSON.parse(jsonString);
+    let recipe = JSON.parse(jsonString);
+
+    // Handle case where Gemini returns an array instead of object
+    if (Array.isArray(recipe)) {
+      if (recipe.length === 0) {
+        throw new Error('Gemini returned empty array');
+      }
+      console.warn('Gemini returned array, extracting first recipe');
+      recipe = recipe[0];
+    }
 
     // Validate required fields
     if (!recipe.title) {
