@@ -6,13 +6,8 @@ struct RecipeDetailView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
-                if let imageName = recipe.imageURL {
-                    Image(imageName)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(height: 200)
-                        .frame(maxWidth: .infinity)
-                        .clipped()
+                if let imageString = recipe.imageURL {
+                    recipeImage(imageString)
                 }
 
                 VStack(alignment: .leading, spacing: 24) {
@@ -142,6 +137,49 @@ struct RecipeDetailView: View {
 
     private var ingredientKeywords: [String] {
         recipe.ingredients.map { $0.name.lowercased() }
+    }
+
+    @ViewBuilder
+    private func recipeImage(_ imageString: String) -> some View {
+        if imageString.hasPrefix("http://") || imageString.hasPrefix("https://"),
+           let url = URL(string: imageString) {
+            // Remote URL
+            AsyncImage(url: url) { phase in
+                switch phase {
+                case .empty:
+                    Rectangle()
+                        .fill(Color.gray.opacity(0.2))
+                        .frame(height: 200)
+                        .overlay { ProgressView() }
+                case .success(let image):
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(height: 200)
+                        .frame(maxWidth: .infinity)
+                        .clipped()
+                case .failure:
+                    Rectangle()
+                        .fill(Color.gray.opacity(0.2))
+                        .frame(height: 200)
+                        .overlay {
+                            Image(systemName: "photo")
+                                .font(.largeTitle)
+                                .foregroundStyle(.secondary)
+                        }
+                @unknown default:
+                    EmptyView()
+                }
+            }
+        } else {
+            // Local asset
+            Image(imageString)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(height: 200)
+                .frame(maxWidth: .infinity)
+                .clipped()
+        }
     }
 }
 
